@@ -1,31 +1,31 @@
-# Proyecto de C++ - [Nombre del Juego]
+# Proyecto de C++ - Random Racing Luck
 
 ## Descripción del Proyecto
 
-Breve descripción del juego, su propósito, cómo se juega y cualquier otro detalle importante que describa la idea general del proyecto.
-
-**Por ejemplo:**
-Este proyecto consiste en un juego de aventuras donde el jugador debe explorar un mundo virtual, recoger objetos, resolver acertijos y enfrentar enemigos. El juego utiliza estructuras de control como `if`, `switch`, y bucles `while` y `for` para generar interacciones dinámicas.
+Este proyecto consiste en un videojuego por consola donde varios jugadores pueden participar en un sistema de apuestas basado en carreras de Fórmula 1. Cada jugador puede apostar por un piloto, y luego se simula la carrera de forma aleatoria. Según el resultado, el jugador puede ganar o perder dinero virtual.
+El objetivo principal es poner en práctica los temas aprendidos en clase (If, Else-if, Switch, For, While, Arrays, etc.) de forma divertida y funcional. 
 
 ## Equipo
 
-- **Nombre del equipo:** [Nombre del equipo]
+- **Nombre del equipo:** Ludus
 
 ### Integrantes del equipo
 
-1. **Nombre completo:** [Nombre del estudiante 1]  
-   **Carnet:** [Carnet del estudiante 1]
+1. **Nombre completo:** Rachel Alejandra Oviedo Castellanos  
+   **Carnet:** 00033125
 
-2. **Nombre completo:** [Nombre del estudiante 2]  
-   **Carnet:** [Carnet del estudiante 2]
+2. **Nombre completo:** Carlos Enmanuel Marcos Palma   
+   **Carnet:** 00208225
 
-3. **Nombre completo:** [Nombre del estudiante 3]  
-   **Carnet:** [Carnet del estudiante 3]
+3. **Nombre completo:** Angelica Michelle Mendoza Chicas   
+   **Carnet:** 00059725
 
-(Agregar más integrantes si es necesario)
+4. **Nombre completo:** Norberto René Revelo Burgos  
+   **Carnet:** 00034425
+
 
 ## Instrucciones de Ejecución
 
 1. Clona este repositorio en tu máquina local:
    ```bash
-   git clone [URL del repositorio]
+   git clone [https://github.com/FDP-01-2025/project-ludus.git]
