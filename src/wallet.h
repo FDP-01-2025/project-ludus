@@ -1,11 +1,10 @@
 //wallet.h
-
+#ifndef WALLET_H
+#define WALLET_H
 namespace walletCommands{
-
-    bool winnerResult(bool personalWallet, bool winnBet){
-        bool win;
-        win = personalWallet - winnBet;
-        return win;
-
-    }
+    float winnerResult(float personalWallet, float winnBet);
+    float loserResult (float personalWallet, float winnBet);
 }
+
+#endif 
+
