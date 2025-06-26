@@ -8,7 +8,7 @@ using namespace std;
 struct players {
     string userName;
     float wallet;
-    char race[50];
+    string race;
 };
 
     float winnerResult(float personalWallet, float winnBet);
