@@ -4,9 +4,6 @@
 using namespace std;
 #include <string> 
 
-//Wallet: billetera personal 
-//finalWallet: representa el resultante que posee el usuario 
-//reultWallet:  representa el resultante que posee el usuario
 
 struct players {
     string userName;
