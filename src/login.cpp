@@ -1,11 +1,4 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include "wallet.h"
-using namespace std;
-
-int main(){
-#include <iostream>
 #include <cstdlib>
 #include <windows.h>
 #include <mmsystem.h> //libreria de sonido
@@ -115,8 +108,5 @@ int main() {
 
     } while (opcion != 2);
 
-    return 0;
-}
-    
     return 0;
 }
