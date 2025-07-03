@@ -11,6 +11,7 @@ struct players {
     string race;
 };
 
+extern players player; //esta en el archivo main de manera global
 
     //funcion para sumar dinero ganado a billetera
     float winnerResult(float personalWallet, float winnBet){
