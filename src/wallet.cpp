@@ -13,7 +13,26 @@ struct players {
 
 extern players player; //esta en el archivo main de manera global
 
-    //funcion para sumar dinero ganado a billetera
+//Funciones de Log in y usuario 
+
+
+//Funciones de pistas de carreras
+
+
+//Funciones de carros
+
+
+//Funciones de simulador 
+
+
+//Funciones de apuestas 
+
+
+//validaciones de lo anterior
+
+
+//Funciones de la billetera
+ //funcion para sumar dinero ganado a billetera
     float winnerResult(float personalWallet, float winnBet){
         float resultWallet;
         resultWallet = personalWallet + winnBet;
