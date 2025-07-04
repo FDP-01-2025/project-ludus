@@ -11,6 +11,7 @@
 #include <ctime>
 #include "carros.h"
 #include "validaciones.h"
+#include "wallet.h" //libreria de la billetera
 using namespace std;
 
 // Estructura para guardar datos de una apuesta
@@ -361,10 +362,14 @@ void realizarApuesta(const vector<string>& pilotos, const vector<int>& ids, cons
     // Calcular premio final
     if (ganoApuesta) {
         premioTotal = (int)(montoApuesta * multiplicador);
-        
+        player.wallet = winnerResult(jugador.wallet, premioTotal); //funcion suma de wallet.h
+        registerChange(player); //guardar en historial
+
         cout << "\n" << YELLOW << "FELICIDADES! GANASTE TU APUESTA!\n" << RESET;
         cout << "Premio ganado: " << GREEN << "$" << premioTotal << RESET << "\n";
     } else {
+        player.wallet = loserResult(player.wallet, montoApostado); //funcion resta de wallet.h
+        registerChange(player); //guardar en historial 
         cout << "\n" << RED << "Lo siento, perdiste tu apuesta.\n" << RESET;
     }
     
