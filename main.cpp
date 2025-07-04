@@ -8,8 +8,7 @@ using namespace std;
 
 players player; //struct que se usa en todas las librerias
 
-int main(){
-
+int main() {
     mostrar_titulo();
     system("timeout /t 2 >nul");
     system("cls");
@@ -42,4 +41,3 @@ int main(){
 
     return 0;
 }
-
