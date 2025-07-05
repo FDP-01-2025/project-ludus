@@ -1,4 +1,4 @@
-#include "wallet.h"
+#include "header.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -13,13 +13,8 @@
 #include <mmsystem.h> //libreria de sonido
 using namespace std;
 
-struct players {
-    string userName;
-    float wallet;
-    string race;
-};
 
-extern players player; //esta en el archivo main de manera global
+players player; //esta en el archivo main de manera global
 
 //Funciones de Log in y usuario 
 
@@ -99,14 +94,7 @@ void iniciar_partida(int jugador) {
 
 
 //Funciones de pistas de carreras
- //creamos la estructura de las pistas y dentro del ella las variable que estas van a llevar
- struct Rtracks {
-        string name;
-        string located;
-        string difficulty_Level;
-        float large_km;
-
-    };
+ 
 //esta funcion nos ayuda a mostrar los ascii de las pistas
 void Show_asciiTrack (string namearchive) {
     ifstream Archive (namearchive);
@@ -383,24 +371,7 @@ void drawCar12() {
 
 
 //Funciones de simulador 
- // Constantes del simulador
-const int cuantosEquipos = 5;
-const int pilotosPorEquipo = 2;
 
-// Estructura para guardar datos de cada piloto
-struct Piloto {
-    string nombre;
-    int id;
-    string modeloCarro;
-    string tipoModelo;      // Para saber si es Deportivo o Clasico
-    string nombreEquipo;    // Para pilotos personalizados
-};
-
-// Estructura para guardar datos de cada equipo
-struct Equipo {
-    string nombreEquipo;
-    Piloto pilotos[pilotosPorEquipo];
-};
 
 // Declaraciones de funciones
 void mostrarEquipos(Equipo equipos[]);
@@ -520,6 +491,7 @@ void verCarros() {
 // Función principal del simulador F1 (equivalente al main original)
 void iniciarSimuladorF1() {
     // Aca estan todos los equipos con sus pilotos
+    
     Equipo equipos[cuantosEquipos] = {
         {"Red Bull", {
             {"Max Verstappen", 1, "RB20", "", ""},
@@ -626,32 +598,8 @@ void iniciarSimuladorF1() {
 }
 
 //Funciones de apuestas 
- // Estructura para guardar datos de una apuesta
-struct Apuesta {
-    string nombreJugador;
-    string tipoApuesta;      // "Grand Total", "Grand Prix", "Sprint"
-    string pilotoElegido;
-    int montoApostado;
-    bool gano;
-    int premio;
-};
 
-// Estructura para el resultado de una carrera
-struct ResultadoCarrera {
-    string nombrePiloto;
-    int idPiloto;
-    string equipo;
-    int posicion;
-    int tiempoCarrera;       // En milisegundos simulados
-};
 
-// Estructura para el ranking de apostadores
-struct Apostador {
-    string nombre;
-    int dineroTotal;
-    int apuestasGanadas;
-    int apuestasTotal;
-};
 
 // Variables globales para el sistema de apuestas
 vector<Apuesta> historialApuestas;
@@ -974,13 +922,13 @@ void realizarApuesta(const vector<string>& pilotos, const vector<int>& ids, cons
     // Calcular premio final
     if (ganoApuesta) {
         premioTotal = (int)(montoApuesta * multiplicador);
-        player.wallet = winnerResult(jugador.wallet, premioTotal); //funcion suma de wallet.h
+        player.wallet = winnerResult(player.wallet, premioTotal); //funcion suma de wallet.h
         registerChange(player); //guardar en historial
 
         cout << "\n" << YELLOW << "FELICIDADES! GANASTE TU APUESTA!\n" << RESET;
         cout << "Premio ganado: " << GREEN << "$" << premioTotal << RESET << "\n";
     } else {
-        player.wallet = loserResult(player.wallet, montoApostado); //funcion resta de wallet.h
+        player.wallet = loserResult(player.wallet, montoApuesta); //funcion resta de wallet.h
         registerChange(player); //guardar en historial 
         cout << "\n" << RED << "Lo siento, perdiste tu apuesta.\n" << RESET;
     }

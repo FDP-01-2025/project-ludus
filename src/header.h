@@ -34,7 +34,7 @@ struct players {
     float wallet;
     string race;
 };
-  
+ extern players player; //esta en el archivo main de manera global 
 
 // Estructura para guardar datos de una apuesta
 struct Apuesta {
@@ -78,34 +78,16 @@ struct Piloto {
 };
 
 // Estructura para guardar datos de cada equipo
+ // Constantes del simulador
+const int cuantosEquipos = 5;
+const int pilotosPorEquipo = 2;
+
 struct Equipo {
     string nombreEquipo;
     Piloto pilotos[pilotosPorEquipo];
 };
-// Estructura para guardar datos de una apuesta
-struct Apuesta {
-    string nombreJugador;
-    string tipoApuesta;      // "Grand Total", "Grand Prix", "Sprint"
-    string pilotoElegido;
-    int montoApostado;
-    bool gano;
-    int premio;
-};
-// Estructura para el resultado de una carrera
-struct ResultadoCarrera {
-    string nombrePiloto;
-    int idPiloto;
-    string equipo;
-    int posicion;
-    int tiempoCarrera;       // En milisegundos simulados
-};
-// Estructura para el ranking de apostadores
-struct Apostador {
-    string nombre;
-    int dineroTotal;
-    int apuestasGanadas;
-    int apuestasTotal;
-};
+
+
 
 /*Declaraciones de funciones*/ 
 
