@@ -138,6 +138,7 @@ void Tracks_f1 (){
     }
    
     Rtracks Selecction = pistas [opcion-1];
+    player.chosenRace = pistas [opcion-1]; // para guardar en la estructura global player 
     cout<< "About..."<<endl;
     cout<<"";
     cout<<"Name:"<<""<<Selecction.name<<endl;
@@ -1233,7 +1234,7 @@ string pedirNombre(const string& mensaje) {
             archivo << "------Registro de billetera------\n" << endl;
             archivo << p.userName << endl;
             archivo << p.wallet << endl;
-            archivo << p.race << endl;
+            archivo << p.chosenRace.name << endl;
             archivo << "---------------------------------\n" << endl;
             archivo.close();
     } else {

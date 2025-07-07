@@ -26,13 +26,19 @@
 #include "header.h" //libreria de la billetera
 
 using namespace std;
+// Estructura de las Pistas
+ struct Rtracks {
+        string name;
+        string located;
+        string difficulty_Level;
+        float large_km;
 
-
+    };
 
 struct players {
     string userName;
     float wallet;
-    string race;
+    Rtracks chosenRace;
 };
  extern players player; //esta en el archivo main de manera global 
 
@@ -60,14 +66,7 @@ struct Apostador {
     int apuestasGanadas;
     int apuestasTotal;
 };
-// Estructura de las Pistas
- struct Rtracks {
-        string name;
-        string located;
-        string difficulty_Level;
-        float large_km;
 
-    };
     // Estructura para guardar datos de cada piloto
 struct Piloto {
     string nombre;
