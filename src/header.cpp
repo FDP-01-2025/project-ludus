@@ -38,25 +38,7 @@ system("cls");
     cout << "****************" << endl;
 }
 
-int seleccionar_jugador() 
-{
-    system("cls");
-    cout << "Jugadores disponibles:" << endl;
-    cout << "1. Yuki Tsunoda" << endl;
-    cout << "2. Oscar Piastri" << endl;
-    cout << "3. Andrea Kimi" << endl;
-    cout << "4. Franco Colapinto" << endl;
-    cout << "5. Oliver Bearman" << endl;
-    cout << "Seleccione jugador (1-5): ";
 
-    int eleccion;
-    cin >> eleccion;
-    while (eleccion < 1 || eleccion > 5) {
-        cout << "opcion invalida, intente otra vez: ";
-        cin >> eleccion;
-    }
-    system("cls");
-    return eleccion;
 
 bool soloLetras(const string& str) {
 for (char c : str) {
