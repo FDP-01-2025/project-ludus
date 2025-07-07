@@ -17,6 +17,7 @@ players player; //esta en el archivo main de manera global
 
 void mostrar_titulo() {
 system("cls");
+
     cout << R"(
 ].----------------.   .----------------. 
 | .--------------. | | .--------------. |
@@ -42,25 +43,7 @@ system("cls");
     cout << "****************" << endl;
 }
 
-int seleccionar_jugador() 
-{
-    system("cls");
-    cout << "Jugadores disponibles:" << endl;
-    cout << "1. Yuki Tsunoda" << endl;
-    cout << "2. Oscar Piastri" << endl;
-    cout << "3. Andrea Kimi" << endl;
-    cout << "4. Franco Colapinto" << endl;
-    cout << "5. Oliver Bearman" << endl;
-    cout << "Seleccione jugador (1-5): ";
 
-    int eleccion;
-    cin >> eleccion;
-    while (eleccion < 1 || eleccion > 5) {
-        cout << "opcion invalida, intente otra vez: ";
-        cin >> eleccion;
-    }
-    system("cls");
-    return eleccion;
 
 bool soloLetras(const string& str) {
 for (char c : str) {
@@ -73,77 +56,27 @@ if (!isalpha(c) && c != ' ') {
 
 //login principal
 
-void login(jugador& j) {
+void validateNames(players& p) {
     cout << "*************************" << endl;
     cout << " BIENVENID@ AL JUEGO" << endl;
     cout << "*************************" << endl;
 
     do {
         cout << "Nombre del jugador (solo se permite letras): ";
-        getline(cin, j.nombre);
-        j.nombre.erase(0, j.nombre.find_first_not_of(" "));
-        j.nombre.erase(j.nombre.find_last_not_of(" ") + 1);
+        getline(cin, p.userName);
+        p.userName.erase(0, p.userName.find_first_not_of(" "));
+        p.userName.erase(p.userName.find_last_not_of(" ") + 1);
 
-        if (!soloLetras(j.nombre)) {
+        if (!soloLetras(p.userName)) {
             cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.\n";
         }
-    } while (!soloLetras(j.nombre));
+    } while (!soloLetras(p.userName));
 
     cout << "Edad: ";
-    cin >> j.edad;
+    cin >> p.age;
     cin.ignore();
 }
 
-
-
-vector<jugador> agregarJugadores(jugador principal) {
-    vector<jugador> jugadores = {principal};
-    int n;
-    cout << "Cantidad de jugadores adicionales (1-4): ";
-    cin >> n;
-    cin.ignore();
-
-    for (int i = 0; i < n; i++) {
-        jugador j;
-        do {
-            cout << "Nombre jugador " << i + 1 << " (solo letras): ";
-            getline(cin, j.nombre);
-            j.nombre.erase(0, j.nombre.find_first_not_of(" "));
-            j.nombre.erase(j.nombre.find_last_not_of(" ") + 1);
-            if (!soloLetras(j.nombre)) {
-                cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.\n";
-            }
-        } while (!soloLetras(j.nombre));
-
-        j.edad = 18;
-        jugadores.push_back(j);
-    }
-    return jugadores;
-}
-
-vector<jugador> agregarJugadores(jugador principal) {
-    vector<jugador> jugadores = {principal};
-    int n;
-    cout << "Cantidad de jugadores adicionales (1-4): "; 
-    cin >> n; 
-    cin.ignore();
-    
-for (int i = 0; i < n; i++) {
-jugador j;
-  do {
-    cout << "Nombre jugador " << i+1 << " (solo letras): "; 
-    getline(cin, j.nombre);
-    j.nombre.erase(0, j.nombre.find_first_not_of(" "));
-    j.nombre.erase(j.nombre.find_last_not_of(" ") + 1); 
-    if (!soloLetras(j.nombre)) {
-    cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.";
-            }
-        } while (!soloLetras(j.nombre));
-        
-        j.edad = 18; 
-        jugadores.push_back(j);
-    }
-    return jugadores;
 
 //Funciones de pistas de carreras
  
@@ -180,7 +113,7 @@ void Tracks_f1 (){
 
     int option;
 
-    cout<<"Selecciona unna pista! (1-5):"<<" ";
+    cout<<"Selecciona una pista! (1-5):"<<" ";
     cout<<"";
     cin>> option;
 
@@ -188,13 +121,13 @@ void Tracks_f1 (){
         cout<<"Opcion invalida"<<endl;
         return;
     }
-   
+
     Rtracks Selecction = pistas [option-1];
     cout<< "Sobre..."<<endl;
     cout<<"";
     cout<<"Nombre:"<<""<<Selecction.name<<endl;
     cout<<"Localidad:"<<""<<Selecction.located<<endl;
-    cout<<"DIficultad:"<<""<<Selecction.difficulty_Level<<endl;
+    cout<<"Dificultad:"<<""<<Selecction.difficulty_Level<<endl;
     cout<<"Longitud:"<<""<<Selecction.large_km<<"km"<<endl;
 
     string namesTrack_Archive[5] = {
