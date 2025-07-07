@@ -17,6 +17,7 @@ players player; //esta en el archivo main de manera global
 
 void mostrar_titulo() {
 system("cls");
+
     cout << R"(
  .----------------.  .----------------. 
 | .--------------. || .--------------. |
@@ -38,8 +39,7 @@ system("cls");
     cout << "****************" << endl;
 }
 
-int seleccionar_jugador() 
-{
+int seleccionar_jugador() {
     system("cls");
     cout << "Jugadores disponibles:" << endl;
     cout << "1. Yuki Tsunoda" << endl;
@@ -57,6 +57,7 @@ int seleccionar_jugador()
     }
     system("cls");
     return eleccion;
+}
 
 bool soloLetras(const string& str) {
 for (char c : str) {
@@ -176,7 +177,7 @@ void Tracks_f1 (){
 
     int option;
 
-    cout<<"Selecciona unna pista! (1-5):"<<" ";
+    cout<<"Selecciona una pista! (1-5):"<<" ";
     cout<<"";
     cin>> option;
 
@@ -184,13 +185,13 @@ void Tracks_f1 (){
         cout<<"Opcion invalida"<<endl;
         return;
     }
-   
+
     Rtracks Selecction = pistas [option-1];
     cout<< "Sobre..."<<endl;
     cout<<"";
     cout<<"Nombre:"<<""<<Selecction.name<<endl;
     cout<<"Localidad:"<<""<<Selecction.located<<endl;
-    cout<<"DIficultad:"<<""<<Selecction.difficulty_Level<<endl;
+    cout<<"Dificultad:"<<""<<Selecction.difficulty_Level<<endl;
     cout<<"Longitud:"<<""<<Selecction.large_km<<"km"<<endl;
 
     string namesTrack_Archive[5] = {
