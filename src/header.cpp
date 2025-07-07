@@ -9,11 +9,8 @@
 #include <cstring>
 #include <string> 
 #include <cstdlib>
-#include <windows.h>
-#include <mmsystem.h> //libreria de sonido
+
 using namespace std;
-
-
 players player; //esta en el archivo main de manera global
 
 //Funciones de Log in y usuario 
@@ -41,57 +38,88 @@ system("cls");
     cout << "****************" << endl;
 }
 
-void mostrar_menu() 
-{
-    cout << "1 - Jugar" << endl;
-    cout << "2 - Salir" << endl;
-    cout << "Ingrese opcion: ";
-}
-
-int seleccionar_jugador() 
-{
-    system("cls");
-    cout << "Jugadores disponibles:" << endl;
-    cout << "1. Yuki Tsunoda" << endl;
-    cout << "2. Oscar Piastri" << endl;
-    cout << "3. Andrea Kimi" << endl;
-    cout << "4. Franco Colapinto" << endl;
-    cout << "5. Oliver Bearman" << endl;
-    cout << "Seleccione jugador (1-5): ";
-
-    int eleccion;
-    cin >> eleccion;
-    while (eleccion < 1 || eleccion > 5) {
-        cout << "opcion invalida, intente otra vez: ";
-        cin >> eleccion;
+bool soloLetras(const string& str) {
+for (char c : str) {
+if (!isalpha(c) && c != ' ') {
+            return false;
+        }
     }
-    system("cls");
-    return eleccion;
+    return !str.empty(); // Asegurarse que no esté vacío
 }
 
-void mostrar_jugador_elegido (int jugador) {
-    cout << "Has elegido a ";
+//login principal
 
-    switch (jugador)
-     {
-        case 1: cout << "Yuki Tsunoda."; break;
-        case 2: cout << "Oscar Piastri."; break;
-        case 3: cout << "Andrea Kimi."; break;
-        case 4: cout << "Franco Colapinto."; break;
-        case 5: cout << "Oliver Bearman."; break;
-        default: cout << "Nadie."; break;
+void login(jugador& j) {
+    cout << "*************************" << endl;
+    cout << " BIENVENID@ AL JUEGO" << endl;
+    cout << "*************************" << endl;
+
+    do {
+        cout << "Nombre del jugador (solo se permite letras): ";
+        getline(cin, j.nombre);
+        j.nombre.erase(0, j.nombre.find_first_not_of(" "));
+        j.nombre.erase(j.nombre.find_last_not_of(" ") + 1);
+
+        if (!soloLetras(j.nombre)) {
+            cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.\n";
+        }
+    } while (!soloLetras(j.nombre));
+
+    cout << "Edad: ";
+    cin >> j.edad;
+    cin.ignore();
+}
+
+
+
+vector<jugador> agregarJugadores(jugador principal) {
+    vector<jugador> jugadores = {principal};
+    int n;
+    cout << "Cantidad de jugadores adicionales (1-4): ";
+    cin >> n;
+    cin.ignore();
+
+    for (int i = 0; i < n; i++) {
+        jugador j;
+        do {
+            cout << "Nombre jugador " << i + 1 << " (solo letras): ";
+            getline(cin, j.nombre);
+            j.nombre.erase(0, j.nombre.find_first_not_of(" "));
+            j.nombre.erase(j.nombre.find_last_not_of(" ") + 1);
+            if (!soloLetras(j.nombre)) {
+                cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.\n";
+            }
+        } while (!soloLetras(j.nombre));
+
+        j.edad = 18;
+        jugadores.push_back(j);
     }
-    cout << endl;
+    return jugadores;
 }
 
-void iniciar_partida(int jugador) {
-    system("cls");
-    mostrar_jugador_elegido(jugador);
-    cout << "¡Partida iniciada!" << endl;
-    system("pause");
-    system("cls");
-}
-
+vector<jugador> agregarJugadores(jugador principal) {
+    vector<jugador> jugadores = {principal};
+    int n;
+    cout << "Cantidad de jugadores adicionales (1-4): "; 
+    cin >> n; 
+    cin.ignore();
+    
+for (int i = 0; i < n; i++) {
+jugador j;
+  do {
+    cout << "Nombre jugador " << i+1 << " (solo letras): "; 
+    getline(cin, j.nombre);
+    j.nombre.erase(0, j.nombre.find_first_not_of(" "));
+    j.nombre.erase(j.nombre.find_last_not_of(" ") + 1); 
+    if (!soloLetras(j.nombre)) {
+    cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.";
+            }
+        } while (!soloLetras(j.nombre));
+        
+        j.edad = 18; 
+        jugadores.push_back(j);
+    }
+    return jugadores;
 
 //Funciones de pistas de carreras
  
@@ -156,6 +184,9 @@ void Tracks_f1 (){
 
     Show_asciiTrack(namesTrack_Archive[option - 1]);
 }
+
+
+
 
 
 //Funciones de carros
