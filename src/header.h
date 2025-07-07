@@ -91,7 +91,7 @@ struct Equipo {
 
 /*Declaraciones de funciones*/ 
 bool soloLetras(const string& str);
-void login(players& p);
+void validateNames(players& p);
 
 
 /**Funciones de Validacion**/
