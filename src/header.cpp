@@ -41,13 +41,6 @@ system("cls");
     cout << "****************" << endl;
 }
 
-void mostrar_menu() 
-{
-    cout << "1 - Jugar" << endl;
-    cout << "2 - Salir" << endl;
-    cout << "Ingrese opcion: ";
-}
-
 int seleccionar_jugador() 
 {
     system("cls");

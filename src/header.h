@@ -89,6 +89,9 @@ struct Equipo {
 
 
 /*Declaraciones de funciones*/ 
+void mostrar_titulo();
+int seleccionar_jugador();
+void mostrar_jugador_elegido (int jugador);
 
 /**Funciones de Validacion**/
 //Funcion para validar que sea un numero entero dentro del rango especificado
