@@ -37,7 +37,7 @@ using namespace std;
 
 struct players {
     string userName;
-    int edad;
+    int age;
     float wallet;
     Rtracks chosenRace;
 };
@@ -91,9 +91,8 @@ struct Equipo {
 
 /*Declaraciones de funciones*/ 
 bool soloLetras(const string& str);
-void login(jugador& j);
-vector<jugador> agregarJugadores(jugador principal);
-vector<jugador> agregarJugadores(jugador principal); 
+void login(players& p);
+
 
 /**Funciones de Validacion**/
 //Funcion para validar que sea un numero entero dentro del rango especificado

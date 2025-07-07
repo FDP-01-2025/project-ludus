@@ -51,53 +51,27 @@ if (!isalpha(c) && c != ' ') {
 
 //login principal
 
-void login(jugador& j) {
+void validateNames(players& p) {
     cout << "*************************" << endl;
     cout << " BIENVENID@ AL JUEGO" << endl;
     cout << "*************************" << endl;
 
     do {
         cout << "Nombre del jugador (solo se permite letras): ";
-        getline(cin, j.nombre);
-        j.nombre.erase(0, j.nombre.find_first_not_of(" "));
-        j.nombre.erase(j.nombre.find_last_not_of(" ") + 1);
+        getline(cin, p.userName);
+        p.userName.erase(0, p.userName.find_first_not_of(" "));
+        p.userName.erase(p.userName.find_last_not_of(" ") + 1);
 
-        if (!soloLetras(j.nombre)) {
+        if (!soloLetras(p.userName)) {
             cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.\n";
         }
-    } while (!soloLetras(j.nombre));
+    } while (!soloLetras(p.userName));
 
     cout << "Edad: ";
-    cin >> j.edad;
+    cin >> p.age;
     cin.ignore();
 }
 
-
-
-vector<jugador> agregarJugadores(jugador principal) {
-    vector<jugador> jugadores = {principal};
-    int n;
-    cout << "Cantidad de jugadores adicionales (1-4): ";
-    cin >> n;
-    cin.ignore();
-
-    for (int i = 0; i < n; i++) {
-        jugador j;
-        do {
-            cout << "Nombre jugador " << i + 1 << " (solo letras): ";
-            getline(cin, j.nombre);
-            j.nombre.erase(0, j.nombre.find_first_not_of(" "));
-            j.nombre.erase(j.nombre.find_last_not_of(" ") + 1);
-            if (!soloLetras(j.nombre)) {
-                cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.\n";
-            }
-        } while (!soloLetras(j.nombre));
-
-        j.edad = 18;
-        jugadores.push_back(j);
-    }
-    return jugadores;
-}
 
 //Funciones de pistas de carreras
  
