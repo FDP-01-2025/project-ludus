@@ -1,6 +1,6 @@
 //wallet.h
 #ifndef HEADER_H
-#define HEADER_H
+#define HEADER_H 
 
 
 // colores bonitos para los carros
@@ -89,6 +89,10 @@ struct Equipo {
 
 
 /*Declaraciones de funciones*/ 
+bool soloLetras(const string& str);
+void login(jugador& j);
+vector<jugador> agregarJugadores(jugador principal);
+vector<jugador> agregarJugadores(jugador principal); 
 
 /**Funciones de Validacion**/
 //Funcion para validar que sea un numero entero dentro del rango especificado
