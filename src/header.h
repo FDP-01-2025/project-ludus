@@ -3,7 +3,7 @@
 #define HEADER_H 
 
 
-// colores bonitos para los carros
+// pretty colors for the cars
 #define BLACK "\x1B[30m"
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
@@ -23,10 +23,10 @@
 #include <algorithm>
 #include <iomanip>
 #include <ctime>
-#include "header.h" //libreria de la billetera
+#include "header.h" //wallet library
 
 using namespace std;
-// Estructura de las Pistas
+// Track Structure
  struct Rtracks {
         string name;
         string located;
@@ -41,139 +41,141 @@ struct players {
     float wallet;
     Rtracks chosenRace;
 };
- extern players player; //esta en el archivo main de manera global 
+ extern players player; //this is in the main file globally 
 
-// Estructura para guardar datos de una apuesta
-struct Apuesta {
-    string nombreJugador;
-    string tipoApuesta;      // "Grand Total", "Grand Prix", "Sprint"
-    string pilotoElegido;
-    int montoApostado;
-    bool gano;
-    int premio;
+// Structure to save bet data
+struct Bet {
+    string playerName;
+    string betType;      // "Grand Total", "Grand Prix", "Sprint"
+    string chosenPilot;
+    int betAmount;
+    bool won;
+    int prize;
 };
-// Estructura para el resultado de una carrera
-struct ResultadoCarrera {
-    string nombrePiloto;
-    int idPiloto;
-    string equipo;
-    int posicion;
-    int tiempoCarrera;       // En milisegundos simulados
+// Structure for race results
+struct RaceResult {
+    string pilotName;
+    int pilotId;
+    string team;
+    int position;
+    int raceTime;       // In simulated milliseconds
 };
-// Estructura para el ranking de apostadores
-struct Apostador {
-    string nombre;
-    int dineroTotal;
-    int apuestasGanadas;
-    int apuestasTotal;
+// Structure for bettor ranking
+struct Bettor {
+    string name;
+    int totalMoney;
+    int wonBets;
+    int totalBets;
 };
 
-    // Estructura para guardar datos de cada piloto
-struct Piloto {
-    string nombre;
+    // Structure to save data for each pilot
+struct Pilot {
+    string name;
     int id;
-    string modeloCarro;
-    string tipoModelo;      // Para saber si es Deportivo o Clasico
-    string nombreEquipo;    // Para pilotos personalizados
+    string carModel;
+    string modelType;      // To know if it's Sports or Classic
+    string teamName;    // For custom pilots
 };
 
-// Estructura para guardar datos de cada equipo
- // Constantes del simulador
-const int cuantosEquipos = 5;
-const int pilotosPorEquipo = 2;
+// Structure to save data for each team
+ // Simulator constants
+const int howManyTeams = 5;
+const int pilotsPerTeam = 2;
 
-struct Equipo {
-    string nombreEquipo;
-    Piloto pilotos[pilotosPorEquipo];
+struct Team {
+    string teamName;
+    Pilot pilots[pilotsPerTeam];
 };
 
 
 
-/*Declaraciones de funciones*/ 
-bool soloLetras(const string& str);
+/*Function Declarations*/ 
+// Login and user functions
+void showTitle();
+void showMenu();
+bool onlyLetters(const string& str);
 void validateNames(players& p);
 
 
-/**Funciones de Validacion**/
-//Funcion para validar que sea un numero entero dentro del rango especificado
-int pedirNumero(int minimo, int maximo);
-// Funcion para pedir un nombre (letras y espacios)
-string pedirNombre(const string& mensaje);
+/**Validation Functions**/
+//Function to validate that it's an integer within the specified range
+int askNumber(int minimum, int maximum);
+// Function to ask for a name (letters and spaces)
+string askName(const string& message);
 
-/*Funciones de la Billetera*/
+/*Wallet Functions*/
 float winnerResult(float personalWallet, float winnBet);
 float loserResult (float personalWallet, float winnBet);
 void registerChange(const players& p);
-void showHistorial()
-;
-// Esta funcion me enseña todos los equipos en una lista
-void mostrarPilotos(Equipo equipo);
-// Esta me muestra los pilotos de un equipo especifico
-void mostrarEquipos(Equipo equipos[]);
-// Esta funcion lee un piloto extra desde un archivo
-bool cargarPiloto(Piloto &p);
-// Esta funcion guarda un piloto nuevo en un archivo
-void crearPiloto();
-// Esta funcion muestra los carros disponibles para elegir
-void verCarros();
-// Función principal del simulador F1 (equivalente al main original)
-void iniciarSimuladorF1();
-// Función para obtener el tipo de carro del piloto personalizado
-string obtenerTipoCarroPersonalizado();
-// Función para mostrar el carro del piloto segun su numero
-void mostrarCarroPiloto(int idPiloto);
-// Funcion para simular cuanto tarda cada piloto
-int simularTiempoCarrera();
-// Función para mostrar comentarios durante la carrera
-void mostrarComentario();
-// Funcion para hacer la carrera completa
-vector<ResultadoCarrera> simularCarrera(vector<string> pilotos, vector<int> ids, vector<string> equipos);
-// Funcion para mostrar el podio al final
-void mostrarPodio(const vector<ResultadoCarrera>& resultados);
-// Función para mostrar tipos de apuesta (sin saldo)
-void mostrarTiposApuesta();
-// Función para realizar una apuesta
-void realizarApuesta(const vector<string>& pilotos, const vector<int>& ids, const vector<string>& equipos);
-// Función para actualizar el ranking de apostadores
-void actualizarRankingApostador(const string& nombre, bool gano, int dineroGanado);
-// Función para mostrar el ranking de apostadores
-void mostrarRankingApostadores();
-// Función para mostrar historial de apuestas
-void mostrarHistorialApuestas();
-// Función para cargar piloto personalizado si existe
-bool cargarPilotoPersonalizado(string& nombre, int& id, string& equipo);
-// Función principal del sistema de apuestas
-void iniciarSistemaApuestas();
+void showHistory();
+// This function shows me all the teams in a list
+void showPilots(Team team);
+// This one shows me the pilots of a specific team
+void showTeams(Team teams[]);
+// This function reads an extra pilot from a file
+bool loadPilot(Pilot &p);
+// This function saves a new pilot to a file
+void createPilot();
+// This function shows the available cars to choose from
+void viewCars();
+// Main function of the F1 simulator (equivalent to the original main)
+void startF1Simulator();
+// Function to get the car type of the custom pilot
+string getCustomCarType();
+// Function to show the pilot's car according to their number
+void showPilotCar(int pilotId);
+// Function to simulate how long each pilot takes
+int simulateRaceTime();
+// Function to show comments during the race
+void showComment();
+// Function to make the complete race
+vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<string> teams);
+// Function to show the podium at the end
+void showPodium(const vector<RaceResult>& results);
+// Function to show bet types (without balance)
+void showBetTypes();
+// Function to place a bet
+void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector<string>& teams);
+// Function to update the bettor ranking
+void updateBettorRanking(const string& name, bool won, int moneyWon);
+// Function to show the bettor ranking
+void showBettorRanking();
+// Function to show betting history
+void showBettingHistory();
+// Function to load custom pilot if it exists
+bool loadCustomPilot(string& name, int& id, string& team);
+// Main function of the betting system
+void startBettingSystem();
 
-/*Funciones De las pistas*/
-//Esta funcion nos ayuda a mostrar los ascii de los vehiculos
-void Show_asciiTrack (string namearchive);
-//Funcion para mostrar pistas
-void Tracks_f1 ();
+/*Track Functions*/
+//This function helps us show the ascii of the vehicles
+void showAsciiTrack(string nameArchive);
+//Function to show tracks
+void tracksF1();
 
-/*Funciones de los carros de los pilotos*/
-// Carro de Max Verstappen
+/*Pilot Car Functions*/
+// Max Verstappen's car
 void drawCar1();
-// Carro de Sergio Pérez
+// Sergio Pérez's car
 void drawCar2();
-// Carro de Lewis Hamilton
+// Lewis Hamilton's car
 void drawCar3();
-// Carro de George Russell
+// George Russell's car
 void drawCar4();
-// Carro de Charles Leclerc
+// Charles Leclerc's car
 void drawCar5();
-// Carro de Carlos Sainz
+// Carlos Sainz's car
 void drawCar6();
-// Carro de Lando Norris
+// Lando Norris's car
 void drawCar7(); 
-// Carro de Oscar Piastri
+// Oscar Piastri's car
 void drawCar8();
-// Carro de Fernando Alonso
+// Fernando Alonso's car
 void drawCar9();
-// Carro de Lance Stroll
+// Lance Stroll's car
 void drawCar10();
-// Carro personalizado 1 - Estilo deportivo
+// Custom car 1 - Sports style
 void drawCar11();
-// Carro personalizado 2 - Estilo clasico
+// Custom car 2 - Classic style
 void drawCar12(); 
 #endif
