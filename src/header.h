@@ -37,6 +37,7 @@ using namespace std;
 
 struct players {
     string userName;
+    int edad;
     float wallet;
     Rtracks chosenRace;
 };
