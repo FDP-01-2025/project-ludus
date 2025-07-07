@@ -114,44 +114,49 @@ void Show_asciiTrack (string namearchive) {
 //creamos la fucnion de las pistas
 void Tracks_f1 (){
     Rtracks pistas [5]{
-        {" SilverStone", " United Kindom", " High", 5.896 },
-        {" Monza","Italy" ," Medium", 5.793},
-        {" Suzuka"," Japan", " High", 5.807},
-        {" Interlagos", " Brasil", " High", 5.470},
-        {" Monaco", " Italy", " Low", 3.330}
+        {" SilverStone", " Reino Unido", " Alto", 5.896 },
+        {" Monza","Italia" ," Media", 5.793},
+        {" Suzuka"," Japon", " Alta", 5.807},
+        {" Interlagos", " Brasil", " Alta", 5.470},
+        {" Monaco", " Italia", " Baja", 3.330}
 
     };
-//Aca con el for lo que se hace es mostrar el nombre dde cada pista
+ //Aca con el for lo que se hace es mostrar el nombre dde cada pista
     for(int i=0;i<5;i++){
         cout<< i+1<< pistas[i].name<<endl;
     };
 
-    int opcion;
+    int option;
 
-    cout<<"Select a Track! (1-5):"<<" ";
+    cout<<"Selecciona unna pista! (1-5):"<<" ";
     cout<<"";
-    cin>> opcion;
+    cin>> option;
 
-    if (opcion <1 ||opcion >5){
-        cout<<"invalid opcion"<<endl;
+    if (option <1 ||option >5){
+        cout<<"Opcion invalida"<<endl;
         return;
     }
    
-    Rtracks Selecction = pistas [opcion-1];
-    player.chosenRace = pistas [opcion-1]; // para guardar en la estructura global player 
-    cout<< "About..."<<endl;
+    Rtracks Selecction = pistas [option-1];
+    cout<< "Sobre..."<<endl;
     cout<<"";
-    cout<<"Name:"<<""<<Selecction.name<<endl;
-    cout<<"Located:"<<""<<Selecction.located<<endl;
-    cout<<"Difficulty:"<<""<<Selecction.difficulty_Level<<endl;
-    cout<<"Distance:"<<""<<Selecction.large_km<<"km"<<endl;
+    cout<<"Nombre:"<<""<<Selecction.name<<endl;
+    cout<<"Localidad:"<<""<<Selecction.located<<endl;
+    cout<<"DIficultad:"<<""<<Selecction.difficulty_Level<<endl;
+    cout<<"Longitud:"<<""<<Selecction.large_km<<"km"<<endl;
 
     string namesTrack_Archive[5] = {
         //archivos
+        "silverstone.txt",
+        "monza.txt",
+        "suzuka.txt",
+        "interlagos.txt",
+        "monaco.txt",
     };
 
-    Show_asciiTrack(namesTrack_Archive[opcion - 1]);
+    Show_asciiTrack(namesTrack_Archive[option - 1]);
 }
+
 
 //Funciones de carros
  // colores bonitos para los carros

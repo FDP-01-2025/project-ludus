@@ -2,8 +2,11 @@
 
 ## Descripción del Proyecto
 
+RESUMEN
 Este proyecto consiste en un videojuego por consola donde varios jugadores pueden participar en un sistema de apuestas basado en carreras de Fórmula 1. Cada jugador puede apostar por un piloto, y luego se simula la carrera de forma aleatoria. Según el resultado, el jugador puede ganar o perder dinero virtual.
-El objetivo principal es poner en práctica los temas aprendidos en clase (If, Else-if, Switch, For, While, Arrays, etc.) de forma divertida y funcional. 
+El objetivo principal es poner en práctica los temas aprendidos en clase (If, Else-if, Switch, For, While, Arrays, archivos, funciones) de forma divertida y funcional. 
+
+INSTRUCCIONES
 
 ## Equipo
 
