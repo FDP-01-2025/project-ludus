@@ -99,30 +99,6 @@ vector<jugador> agregarJugadores(jugador principal) {
     return jugadores;
 }
 
-vector<jugador> agregarJugadores(jugador principal) {
-    vector<jugador> jugadores = {principal};
-    int n;
-    cout << "Cantidad de jugadores adicionales (1-4): "; 
-    cin >> n; 
-    cin.ignore();
-    
-for (int i = 0; i < n; i++) {
-jugador j;
-  do {
-    cout << "Nombre jugador " << i+1 << " (solo letras): "; 
-    getline(cin, j.nombre);
-    j.nombre.erase(0, j.nombre.find_first_not_of(" "));
-    j.nombre.erase(j.nombre.find_last_not_of(" ") + 1); 
-    if (!soloLetras(j.nombre)) {
-    cout << "Error: El nombre solo debe contener letras y espacios. Intente nuevamente.";
-            }
-        } while (!soloLetras(j.nombre));
-        
-        j.edad = 18; 
-        jugadores.push_back(j);
-    }
-    return jugadores;
-
 //Funciones de pistas de carreras
  
 //esta funcion nos ayuda a mostrar los ascii de las pistas
