@@ -32,7 +32,7 @@ system("cls");
  '----------------'   '----------------'
 
 )" << endl;
-  cout << "      🚗🏁 BIENVENID@ AL JUEGO DE LA FÓRMULA 1 🏁🚗\n" << endl;
+  cout << " 🚗💨 BIENVENID@ AL JUEGO DE 🚦 Random Racing Luck " << endl;
 }
 
 }
@@ -59,7 +59,7 @@ if (!isalpha(c) && c != ' ') {
 
 void validateNames(players& p) {
     cout << "*************************" << endl;
-    cout << " BIENVENID@ AL JUEGO" << endl;
+    cout << " 🏁🏁🏁BIENVENID@ AL JUEGO🏁🏁🏁" << endl;
     cout << "*************************" << endl;
 
     do {
