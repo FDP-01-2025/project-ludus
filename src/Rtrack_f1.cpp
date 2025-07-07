@@ -3,7 +3,7 @@
 #include <fstream>
 
 using namespace std;
-//creamos la estructura de las pistas y dentro del ella las variable que estas van a llevar
+ //creamos la estructura de las pistas y dentro del ella las variable que estas van a llevar
  struct Rtracks {
         string name;
         string located;
@@ -11,7 +11,8 @@ using namespace std;
         float large_km;
 
     };
-//esta funcion nos ayuda a mostrar los ascii de las pistas
+    
+ //esta funcion nos ayuda a mostrar los ascii de las pistas
 void Show_asciiTrack (string namearchive) {
     ifstream Archive (namearchive);
     if (!Archive) {
@@ -37,7 +38,7 @@ void Tracks_f1 (){
         {" Monaco", " Italy", " Low", 3.330}
 
     };
-//Aca con el for lo que se hace es mostrar el nombre dde cada pista
+ //Aca con el for lo que se hace es mostrar el nombre dde cada pista
     for(int i=0;i<5;i++){
         cout<< i+1<< pistas[i].name<<endl;
     };
@@ -63,6 +64,11 @@ void Tracks_f1 (){
 
     string namesTrack_Archive[5] = {
         //archivos
+        "silverstone.txt",
+        "monza.txt",
+        "suzuka.txt",
+        "interlagos.txt",
+        "monaco.txt",
     };
 
     Show_asciiTrack(namesTrack_Archive[opcion - 1]);
