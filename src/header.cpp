@@ -11,7 +11,7 @@
 #include <cstdlib>
 
 using namespace std;
-players player; //this is in the main file globally
+extern players player; //this is declared in main.cpp globally
 
 //Login and user functions 
 
@@ -146,7 +146,7 @@ void tracksF1() {
 
 //Car functions
 
-// Carro de Max Verstappen
+// Max Verstappen's car
 void drawCar1() {
     cout << YELLOW << "          *   \n";
     cout << YELLOW << "         / \\\n";
@@ -163,7 +163,7 @@ void drawCar1() {
     cout << ORANGE << "      ]-------[\n";
 }
 
-// Carro de Sergio Pérez
+// Sergio Pérez's car
 void drawCar2() {
     cout << YELLOW << "        __\n";
     cout << YELLOW << "       |  |\n";
@@ -180,7 +180,7 @@ void drawCar2() {
     cout << RED << "     ***  *** \n";
 }
 
-// Carro de Lewis Hamilton
+// Lewis Hamilton's car
 void drawCar3() {
     cout << YELLOW << "         _   \n";
     cout << YELLOW << "        / \\\n";
@@ -197,7 +197,7 @@ void drawCar3() {
     cout << ORANGE << "     ]*******[\n";
 }
 
-// Carro de George Russell
+// George Russell's car
 void drawCar4() {
     cout << CYAN << "         ___   \n";
     cout << MAGENTA << "        |   |\n";
@@ -214,7 +214,7 @@ void drawCar4() {
     cout << GREEN << "     [=========]\n";
 }
 
-// Carro de Charles Leclerc
+// Charles Leclerc's car
 void drawCar5() {
     cout << RED << "         /^\\\n";
     cout << RED << "        |   |\n";
@@ -231,7 +231,7 @@ void drawCar5() {
     cout << YELLOW << "     [*Ferrari*]\n";
 }
 
-// Carro de Carlos Sainz
+// Carlos Sainz's car
 void drawCar6() {
     cout << RED << "        ^^^^^\n";
     cout << YELLOW << "       |     |\n";
@@ -248,7 +248,7 @@ void drawCar6() {
     cout << RED << "    [***SAINZ***]\n";
 }
 
-// Carro de Lando Norris
+// Lando Norris's car
 void drawCar7() {
     cout << ORANGE << "         /~\\\n";
     cout << BLUE << "        |   |\n";
@@ -265,7 +265,7 @@ void drawCar7() {
     cout << BLACK << "     [McLAREN]\n";
 }
 
-// Carro de Oscar Piastri
+// Oscar Piastri's car
 void drawCar8() {
     cout << ORANGE << "        /==\\\n";
     cout << BLACK << "       |    |\n";
@@ -282,7 +282,7 @@ void drawCar8() {
     cout << ORANGE << "    [*PIASTRI*]\n";
 }
 
-// Carro de Fernando Alonso
+// Fernando Alonso's car
 void drawCar9() {
     cout << GREEN << "         /^\\\n"; 
     cout << BLACK << "        |   |\n";
@@ -299,7 +299,7 @@ void drawCar9() {
     cout << GREEN << "     [ALONSO]\n";
 }
 
-// Carro de Lance Stroll
+// Lance Stroll's car
 void drawCar10() {
     cout << GREEN << "        /-\\\n";
     cout << BLACK << "       |   |\n";
@@ -316,7 +316,7 @@ void drawCar10() {
     cout << BLACK << "    [STROLL]\n";
 }
 
-// Carro personalizado 1 - Estilo deportivo
+// Custom car 1 - Sports style
 void drawCar11() {
     cout << MAGENTA << "        /***\\\n";
     cout << CYAN << "       |     |\n";
@@ -333,7 +333,7 @@ void drawCar11() {
     cout << YELLOW << "    [*SPORT*]\n";
 }
 
-// Carro personalizado 2 - Estilo clasico
+// Custom car 2 - Classic style
 void drawCar12() {
     cout << BLUE << "         ====\n";
     cout << WHITE << "        |    |\n";
@@ -352,14 +352,6 @@ void drawCar12() {
 
 
 //Simulator functions 
-
-// Function declarations
-void showTeams(Team teams[]);
-void showPilots(Team team);
-bool loadPilot(Pilot &p);
-void createPilot();
-void viewCars();
-void startF1Simulator();
 
 // This function shows me all the teams in a list
 void showTeams(Team teams[]) {
@@ -582,21 +574,6 @@ void startF1Simulator() {
 // Global variables for the betting system
 vector<Bet> bettingHistory;
 vector<Bettor> bettorRanking;
-
-// Function declarations
-string getCustomCarType();
-bool loadCustomPilot(string& name, int& id, string& team);
-void showPilotCar(int pilotId);
-int simulateRaceTime();
-void showComment();
-vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<string> teams);
-void showPodium(const vector<RaceResult>& results);
-void showBetTypes();
-void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector<string>& teams);
-void updateBettorRanking(const string& name, bool won, int moneyWon);
-void showBettorRanking();
-void showBettingHistory();
-void startBettingSystem();
 
 // Comments from commentators during races
 vector<string> raceComments = {
@@ -1174,8 +1151,8 @@ string askName(const string& message) {
     }
 }
 
-//Funciones de la billetera
- //funcion para sumar dinero ganado a billetera
+//Wallet functions
+ //function to add won money to wallet
     float winnerResult(float personalWallet, float winnBet){
         float resultWallet;
         resultWallet = personalWallet + winnBet;
@@ -1186,7 +1163,7 @@ string askName(const string& message) {
 
     }
 
-    //funcion para restar dinero a la billetera
+    //function to subtract money from wallet
     float loserResult(float personalWallet, float winnBet){
         float minusWallet;
         minusWallet = personalWallet - winnBet;
@@ -1199,7 +1176,7 @@ string askName(const string& message) {
 
     //function to create wallet history
     void registerChange(const players& p){
-        ofstream archivo("historial_wallet.txt", ios::app); //ios::app para agregar y no sobreescribir
+        ofstream archivo("historial_wallet.txt", ios::app); //ios::app to add and not overwrite
         if (archivo.is_open()) {
             archivo << "------Wallet Record------\n" << endl;
             archivo << p.userName << endl;

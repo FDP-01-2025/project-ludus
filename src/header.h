@@ -23,7 +23,6 @@
 #include <algorithm>
 #include <iomanip>
 #include <ctime>
-#include "header.h" //wallet library
 
 using namespace std;
 // Track Structure
