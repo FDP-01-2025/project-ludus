@@ -177,4 +177,9 @@ void drawCar10();
 void drawCar11();
 // Custom car 2 - Classic style
 void drawCar12(); 
+
+/*Game Flow Functions*/
+// Post-race menu function
+void postRaceMenu(players& p);
+
 #endif
