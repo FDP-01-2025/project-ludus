@@ -1,40 +1,37 @@
 #include "header.h"
 using namespace std;
 
-players player1; 
-
 // Define the global player variable that header.cpp expects
 players player;
 
 void principalMenu(players& p);
 
 int main() {
-    showTitle(); // Translated function name
+    showTitle();
 
     int option;
     do {
-        cout << "\n----- MENÚ PRINCIPAL -----\n";
+        cout << "\n----- MENU PRINCIPAL -----\n";
         cout << "  1. Jugar\n";
         cout << "  2. Salir\n";
-        cout << "Selecciona una opción: ";
+        cout << "Selecciona una opcion: ";
         cin >> option;
         cin.ignore();
 
         switch (option) {
             case 1:
-                validateNames(player1); // validates name and age
-                player1.wallet = 1000;
-                player1.chosenRace = {"", "", "", 0};
-                player = player1; // Set global player for functions to use
-                principalMenu(player1); // main menu for single player
+                validateNames(player);
+                player.wallet = 1000;
+                player.chosenRace = {"", "", "", 0};
+                principalMenu(player);
                 break;
 
             case 2:
-                cout << "\n¡Gracias por jugar!  ¡Nos vemos la próxima vez, piloto!\n";
+                cout << "\nGracias por jugar! Nos vemos la proxima vez, piloto!\n";
                 break;
 
             default:
-                cout << "Opción inválida. Por favor, intenta de nuevo.\n";
+                cout << "Opcion invalida. Por favor, intenta de nuevo.\n";
         }
 
     } while (option != 2);
@@ -45,56 +42,56 @@ int main() {
 void principalMenu(players& p){
     int opcion;
     
-    // Welcome message
     cout << "\n*************************" << endl;
     cout << "  BIENVENIDO " << p.userName << " " << endl;
     cout << "*************************" << endl;
     cout << "Tu saldo actual: $" << p.wallet << endl;
 
     do {
-        cout << "\n--- Flujo del Juego ---\n";
-        cout << "1. Elegir pista y empezar carrera\n";
-        cout << "2. Mostrar autos\n";
-        cout << "3. Sistema de apuestas\n";
-        cout << "4. Salir al menú principal\n";
-        cout << "Selecciona una opción: ";
+        cout << "\n--- Que quieres hacer? ---\n";
+        cout << "1. JUGAR CARRERA COMPLETA (Pista -> Piloto -> Apuesta -> Carrera)\n";
+        cout << "2. Ver autos y pilotos\n";
+        cout << "3. Solo apostar\n";
+        cout << "4. Salir\n";
+        cout << "Selecciona una opcion: ";
         cin >> opcion;
         cin.ignore();
 
-        // Update global player before calling functions
         player = p;
 
         switch (opcion) {
             case 1:
-                // Complete race flow: Track → Cars → Betting
-                cout << "\n=== PASO 1: ELIGE TU PISTA ===\n";
-                tracksF1(); // choose track
+                cout << "\nEMPEZAMOS LA EXPERIENCIA COMPLETA!\n";
                 
-                cout << "\n=== PASO 2: CONOCE A LOS PILOTOS ===\n";
-                startF1Simulator(); // show cars
+                cout << "\n=== PASO 1: ELIGE TU PISTA ===\n";
+                tracksF1();
+                
+                cout << "\n=== PASO 2: ELIGE TU PILOTO ===\n";
+                startF1Simulator();
                 
                 cout << "\n=== PASO 3: HAZ TU APUESTA ===\n";
                 cout << "Tu saldo disponible: $" << player.wallet << endl;
-                startBettingSystem(); // manage bets
+                startBettingSystem();
                 
-                // After race, show post-race menu
-                postRaceMenu(player);
+                p = player;
                 break;
             case 2:
-                startF1Simulator(); // show cars only
+                cout << "\nMOSTRANDO AUTOS Y PILOTOS\n";
+                startF1Simulator();
                 break;
             case 3:
+                cout << "\nSISTEMA DE APUESTAS\n";
                 cout << "Tu saldo disponible: $" << player.wallet << endl;
-                startBettingSystem(); // manage bets only
+                startBettingSystem();
+                p = player;
                 break;
             case 4:
-                cout << "\nRegresando al menú principal. ¡Hasta luego " << p.userName << "!\n";
+                cout << "\nHasta luego " << p.userName << "! Gracias por jugar!\n";
                 break;
             default:
-                cout << "Opción inválida. Por favor, intenta de nuevo.\n";
+                cout << "Opcion invalida. Por favor, intenta de nuevo.\n";
         }
         
-        // Update local player with any changes from global
         p = player;
     } while (opcion != 4);
 }

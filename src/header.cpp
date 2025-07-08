@@ -6,7 +6,6 @@
 #include <algorithm>
 #include <iomanip>
 #include <ctime>
-#include <cstring>
 #include <string> 
 #include <cstdlib>
 #include <thread>
@@ -16,7 +15,7 @@
 #endif
 
 using namespace std;
-extern players player; //this is declared in main.cpp globally
+extern players player;
 
 // Cross-platform sleep function
 void sleepMs(int milliseconds) {
@@ -46,7 +45,7 @@ void showTitle() {
  '----------------'   '----------------'
 
 )" << endl;
-    cout << " 🚗💨 WELCOME TO THE 🚦 Random Racing Luck GAME " << endl;
+    cout << " BIENVENIDO AL Juego de Carreras de Suerte " << endl;
 }
 
 bool onlyLetters(const string& str) {
@@ -55,28 +54,28 @@ if (!isalpha(c) && c != ' ') {
             return false;
         }
     }
-    return !str.empty(); // Make sure it's not empty
+    return !str.empty();
 }
 
 //login principal
 
 void validateNames(players& p) {
     cout << "*************************" << endl;
-    cout << " WELCOME TO THE GAME" << endl;
+    cout << " BIENVENIDO AL JUEGO" << endl;
     cout << "*************************" << endl;
 
     do {
-        cout << "Player name (only letters allowed): ";
+        cout << "Nombre del jugador (solo letras permitidas): ";
         getline(cin, p.userName);
         p.userName.erase(0, p.userName.find_first_not_of(" "));
         p.userName.erase(p.userName.find_last_not_of(" ") + 1);
 
         if (!onlyLetters(p.userName)) {
-            cout << "Error: The name must only contain letters and spaces. Please try again.\n";
+            cout << "Error: El nombre debe contener solo letras y espacios. Por favor intenta de nuevo.\n";
         }
     } while (!onlyLetters(p.userName));
 
-    cout << "Age: ";
+    cout << "Edad: ";
     cin >> p.age;
     cin.ignore();
 }
@@ -88,7 +87,7 @@ void validateNames(players& p) {
 void showAsciiTrack(string nameArchive) {
     ifstream Archive(nameArchive);
     if (!Archive) {
-        cout << "Could not open the file: " << nameArchive << endl;
+        cout << "No se pudo abrir el archivo: " << nameArchive << endl;
         return;
     }
 
@@ -118,29 +117,29 @@ void tracksF1() {
 
     int option;
 
-    cout<<"\n¡Selecciona una pista! (1-5): ";
+    cout<<"\nSelecciona una pista! (1-5): ";
     cin>> option;
-    cin.ignore(); // Limpiar buffer
+    cin.ignore();
 
     if (option <1 ||option >5){
-        cout<<"Opción inválida"<<endl;
+        cout<<"Opcion invalida"<<endl;
         return;
     }
 
     Rtracks Selection = tracks [option-1];
-    cout<< "\n=== INFORMACIÓN DE LA PISTA ===\n";
+    cout<< "\n=== INFORMACION DE LA PISTA ===\n";
     cout<<"Nombre: "<<Selection.name<<endl;
-    cout<<"Ubicación: "<<Selection.located<<endl;
+    cout<<"Ubicacion: "<<Selection.located<<endl;
     cout<<"Dificultad: "<<Selection.difficulty_Level<<endl;
     cout<<"Longitud: "<<Selection.large_km<<" km"<<endl;
 
     string namesTrack_Archive[5] = {
         //files
-        "sliverstone.txt",
-        "monza.txt",
-        "suzuka.txt",
-        "interlagos.txt",
-        "monaco.txt",
+        "src/sliverstone.txt",
+        "src/monza.txt",
+        "src/suzuka.txt",
+        "src/interlagos.txt",
+        "src/monaco.txt",
     };
 
     cout << "\n=== VISTA DE LA PISTA ===\n";
@@ -359,7 +358,6 @@ void drawCar12() {
 
 //Simulator functions 
 
-// This function shows me all the teams in a list
 void showTeams(Team teams[]) {
     cout << "\n=== LISTA DE EQUIPOS ===\n";
     for (int i = 0; i < howManyTeams; i++) {
@@ -367,7 +365,6 @@ void showTeams(Team teams[]) {
     }
 }
 
-// This one shows me the pilots of a specific team
 void showPilots(Team team) {
     cout << "\n=== PILOTOS DE " << team.teamName << " ===\n";
     for (int i = 0; i < pilotsPerTeam; i++) {
@@ -375,22 +372,20 @@ void showPilots(Team team) {
     }
 }
 
-// This function reads an extra pilot from a file
 bool loadPilot(Pilot &p) {
     ifstream archivo("piloto_extra.txt");
-    if (!archivo.is_open()) return false;  // In case the file can't be opened
+    if (!archivo.is_open()) return false;
 
     getline(archivo, p.name);
     archivo >> p.id;
     archivo.ignore();
-    getline(archivo, p.carModel);     // This is the plate 
-    getline(archivo, p.modelType);      // Sports or Classic
-    getline(archivo, p.teamName);   // Custom team name
+    getline(archivo, p.carModel);
+    getline(archivo, p.modelType);
+    getline(archivo, p.teamName);
     archivo.close();
     return true;
 }
 
-// This function saves a new pilot to a file
 void createPilot() {
     ofstream archivo("piloto_extra.txt");
     if (!archivo.is_open()) {
@@ -403,20 +398,20 @@ void createPilot() {
     int pilotId;
     
     // Pilot name validation (letters and spaces)
-    pilotName = askName("¿Cuál es el nombre de tu piloto?: ");
+    pilotName = askName("Cual es el nombre de tu piloto?: ");
     
     // Pilot ID validation
-    cout << "¿Qué ID le damos? (1-999): ";
+    cout << "Que ID le damos? (1-999): ";
     pilotId = askNumber(1, 999);
     
     // Team name validation (letters and spaces)
-    teamName = askName("¿Cuál es el nombre de tu equipo?: ");
+    teamName = askName("Cual es el nombre de tu equipo?: ");
     
     // Car model validation
-    cout << "\n=== ¿QUÉ AUTO QUIERES? ===\n";
+    cout << "\n=== QUE AUTO QUIERES? ===\n";
     cout << "1. Auto Deportivo\n";
     cout << "2. Auto Clásico\n";
-    cout << "¿Cuál te gusta más? (1-2): ";
+    cout << "Cual te gusta mas? (1-2): ";
     
     int carOption = askNumber(1, 2);
     
@@ -458,7 +453,6 @@ void createPilot() {
     }
 }
 
-// This function shows the available cars to choose from
 void viewCars() {
     cout << "\n-- CAR 1: SPORTS --\n";
     drawCar11();
@@ -468,7 +462,6 @@ void viewCars() {
 
 // Main function of the F1 simulator (equivalent to the original main)
 void startF1Simulator() {
-    // Here are all the teams with their pilots
     
     Team teams[howManyTeams] = {
         {"Red Bull", {
@@ -499,10 +492,10 @@ void startF1Simulator() {
 
     // Ask the user what they want to do
     int whatToDo;
-    cout << "\n=== BIENVENIDO A LA SIMULACIÓN F1 ===\n";
+    cout << "\n=== BIENVENIDO A LA SIMULACION F1 ===\n";
     cout << "1. Ver pilotos y elegir uno\n";
     cout << "2. Crear tu propio piloto con auto personalizado\n";
-    cout << "¿Qué quieres hacer?: ";
+    cout << "Que quieres hacer?: ";
     whatToDo = askNumber(1, 2);
 
     // If they want to add a new pilot
@@ -520,13 +513,13 @@ void startF1Simulator() {
 
     // Show the teams to choose from
     showTeams(teams);
-    cout << "\n¿Qué equipo te gusta? (1-" << howManyTeams << "): ";
+    cout << "\nQue equipo te gusta? (1-" << howManyTeams << "): ";
     chosenTeam = askNumber(1, howManyTeams);
 
     // Show the pilots of the chosen team
     showPilots(teams[chosenTeam - 1]);
 
-    cout << "\n¿Qué piloto eliges? (1-" << pilotsPerTeam;
+    cout << "\nQue piloto eliges? (1-" << pilotsPerTeam;
     if (hasExtraPilot) cout << " o 3 para piloto extra";
     cout << "): ";
     chosenPilot = askNumber(1, hasExtraPilot ? 3 : 2);
@@ -590,41 +583,41 @@ vector<Bettor> bettorRanking;
 
 // Comentarios de los comentaristas durante las carreras
 vector<string> raceComments = {
-    "¡Qué arranque increíble! ¡Los motores están rugiendo!",
-    "¡Adelantamiento asombroso en la curva 3! ¡La multitud está enloquecida!",
-    "¡Está ganando terreno rápido! ¡Mira esa aceleración!",
-    "¡Oh no! ¡Problemas técnicos para el líder!",
-    "¡Qué maniobra defensiva! ¡Conducción magistral!",
-    "¡Está escalando posiciones como un rayo!",
-    "¡Los neumáticos empiezan a mostrar desgaste!",
-    "¡Esa fue una maniobra extremadamente arriesgada!",
-    "¡Esta carrera es absolutamente emocionante!",
-    "¡Los espectadores están de pie!",
-    "¡Frenado perfecto en la chicane!",
-    "¡Qué batalla por el segundo lugar!",
-    "¡Las condiciones climáticas son perfectas para correr!",
-    "¡Está marcando un ritmo abrasador!",
-    "¡Trabajo en equipo fantástico en esa parada en boxes!",
-    "¡El líder del campeonato está bajo presión!",
-    "¡Qué precisión en las curvas!",
-    "¡La brecha se está cerrando rápidamente!",
-    "¡Estrategia brillante desde el muro de boxes!",
-    "¡Las últimas vueltas van a ser decisivas!",
-    "¡Ha encontrado la línea de carrera perfecta!",
-    "¡Qué demostración increíble de habilidad!",
-    "¡La zona DRS está siendo crucial!",
-    "¡Esa fue una maniobra de adelantamiento de manual!",
-    "¡La tensión está aumentando para el tramo final!"
+    "Que arranque increible! Los motores estan rugiendo!",
+    "Adelantamiento asombroso en la curva 3! La multitud esta enloquecida!",
+    "Esta ganando terreno rapido! Mira esa aceleracion!",
+    "Oh no! Problemas tecnicos para el lider!",
+    "Que maniobra defensiva! Conduccion magistral!",
+    "Esta escalando posiciones como un rayo!",
+    "Los neumaticos empiezan a mostrar desgaste!",
+    "Esa fue una maniobra extremadamente arriesgada!",
+    "Esta carrera es absolutamente emocionante!",
+    "Los espectadores estan de pie!",
+    "Frenado perfecto en la chicane!",
+    "Que batalla por el segundo lugar!",
+    "Las condiciones climaticas son perfectas para correr!",
+    "Esta marcando un ritmo abrasador!",
+    "Trabajo en equipo fantastico en esa parada en boxes!",
+    "El lider del campeonato esta bajo presion!",
+    "Que precision en las curvas!",
+    "La brecha se esta cerrando rapidamente!",
+    "Estrategia brillante desde el muro de boxes!",
+    "Las ultimas vueltas van a ser decisivas!",
+    "Ha encontrado la linea de carrera perfecta!",
+    "Que demostracion increible de habilidad!",
+    "La zona DRS esta siendo crucial!",
+    "Esa fue una maniobra de adelantamiento de manual!",
+    "La tension esta aumentando para el tramo final!"
 };
 
-// Mensajes de felicitación
+// Mensajes de felicitacion
 vector<string> congratulationMessages = {
-    "¡FELICITACIONES! ¡Acertaste!",
-    "¡GENIAL! ¡Tu piloto sí ganó!",
-    "¡PERFECTO! ¡Elegiste bien!",
-    "¡EXCELENTE! ¡Sabía que él ganaría!",
-    "¡INCREÍBLE! ¡Qué suerte tienes!",
-    "¡PERFECTO! ¡Eres bueno en esto!"
+    "FELICITACIONES! Acertaste!",
+    "GENIAL! Tu piloto si gano!",
+    "PERFECTO! Elegiste bien!",
+    "EXCELENTE! Sabia que el ganaria!",
+    "INCREIBLE! Que suerte tienes!",
+    "PERFECTO! Eres bueno en esto!"
 };
 
 // Función para obtener el tipo de carro del piloto personalizado
@@ -692,11 +685,11 @@ void showComment() {
     // Add variety to the display format
     string prefix;
     switch (commentVariety) {
-        case 0: prefix = "🎤 COMMENTATOR: "; break;
-        case 1: prefix = "📻 RADIO: "; break;
-        case 2: prefix = "🎬 TRACK REPORTER: "; break;
-        case 3: prefix = "🏁 RACE CONTROL: "; break;
-        default: prefix = "📺 BROADCAST: "; break;
+        case 0: prefix = "COMENTARISTA: "; break;
+        case 1: prefix = "RADIO: "; break;
+        case 2: prefix = "REPORTERO DE PISTA: "; break;
+        case 3: prefix = "CONTROL DE CARRERA: "; break;
+        default: prefix = "TRANSMISION: "; break;
     }
     
     cout << YELLOW << prefix << raceComments[indice] << RESET << endl;
@@ -709,29 +702,29 @@ void showLapComment(int lapNumber) {
     switch (lapNumber) {
         case 1:
             lapSpecificComments = {
-                "What a fantastic start to the race!",
-                "The drivers are finding their rhythm!",
-                "Early positioning will be crucial!",
-                "The track conditions are perfect!",
-                "Everyone's looking for the best racing line!"
+                "Que arranque fantastico para la carrera!",
+                "Los pilotos estan encontrando su ritmo!",
+                "El posicionamiento temprano sera crucial!",
+                "Las condiciones de la pista son perfectas!",
+                "Todos buscan la mejor linea de carrera!"
             };
             break;
         case 2:
             lapSpecificComments = {
-                "We're seeing some exciting battles mid-race!",
-                "Strategy is starting to play a role!",
-                "The pace is really picking up!",
-                "Some drivers are making their move!",
-                "The championship fight is heating up!"
+                "Estamos viendo batallas emocionantes a mitad de carrera!",
+                "La estrategia esta empezando a jugar un papel!",
+                "El ritmo realmente se esta acelerando!",
+                "Algunos pilotos estan haciendo su movimiento!",
+                "La lucha por el campeonato se esta calentando!"
             };
             break;
         case 3:
             lapSpecificComments = {
-                "This is where champions are made!",
-                "The final push is underway!",
-                "Every position matters now!",
-                "The tension is at its peak!",
-                "What a thrilling finish we're witnessing!"
+                "Aqui es donde se hacen los campeones!",
+                "El empuje final esta en marcha!",
+                "Cada posicion importa ahora!",
+                "La tension esta en su punto maximo!",
+                "Que final emocionante estamos presenciando!"
             };
             break;
         default:
@@ -740,14 +733,14 @@ void showLapComment(int lapNumber) {
     }
     
     int indice = rand() % lapSpecificComments.size();
-    cout << CYAN << "🏁 LAP " << lapNumber << " UPDATE: " << lapSpecificComments[indice] << RESET << endl;
+    cout << CYAN << "VUELTA " << lapNumber << " ACTUALIZACION: " << lapSpecificComments[indice] << RESET << endl;
 }
 
 // Función para hacer la carrera completa
 vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<string> teams) {
     vector<RaceResult> resultados;
     
-    cout << GREEN << "\n🏁 THE RACE IS STARTING! 🏁\n" << RESET;
+    cout << GREEN << "\nLA CARRERA ESTA COMENZANDO!\n" << RESET;
     cout << "===================================\n\n";
     
     // Initialize random seed with current time and additional entropy
@@ -798,21 +791,21 @@ vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<s
     }
     
     // Show the race with dynamic car display
-    cout << CYAN << "🏎️  The cars are positioning on the grid...\n" << RESET;
+    cout << CYAN << "Los autos se estan posicionando en la parrilla...\n" << RESET;
     
     // Show starting grid
-    cout << "\n" << MAGENTA << "=== STARTING GRID ===\n" << RESET;
+    cout << "\n" << MAGENTA << "=== PARRILLA DE SALIDA ===\n" << RESET;
     for (size_t i = 0; i < pilots.size() && i < 5; i++) {
-        cout << WHITE << "Position " << (i+1) << ": " << pilots[i] << " (" << teams[i] << ")\n" << RESET;
+        cout << WHITE << "Posicion " << (i+1) << ": " << pilots[i] << " (" << teams[i] << ")\n" << RESET;
     }
     
     // Add realistic delay
-    cout << "\n" << YELLOW << "⏱️  Warming up engines...\n" << RESET;
+    cout << "\n" << YELLOW << "Calentando motores...\n" << RESET;
     sleepMs(1500);
     
     // Simulate race laps with varied display
     for (int lap = 1; lap <= 3; lap++) {
-        cout << "\n" << MAGENTA << "🏁 === LAP " << lap << " === 🏁\n" << RESET;
+        cout << "\n" << MAGENTA << "=== VUELTA " << lap << " ===\n" << RESET;
         
         // Show different cars each lap (not always the same ones)
         vector<int> displayIndices;
@@ -825,7 +818,7 @@ vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<s
         int carsToShow = min(4, (int)resultados.size());
         for (int i = 0; i < carsToShow; i++) {
             int idx = displayIndices[i];
-            cout << WHITE << "🏎️  Car: " << resultados[idx].pilotName 
+            cout << WHITE << "Auto: " << resultados[idx].pilotName 
                  << " (" << resultados[idx].team << ")\n" << RESET;
             showPilotCar(resultados[idx].pilotId);
             cout << "\n";
@@ -837,17 +830,17 @@ vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<s
         sleepMs(1000);
         showComment();
         
-        cout << "\n" << CYAN << "⏱️  Processing lap " << lap << "...\n" << RESET;
+        cout << "\n" << CYAN << "Procesando vuelta " << lap << "...\n" << RESET;
         sleepMs(1200); // Pause between laps
     }
     
     // Final stretch simulation
-    cout << "\n" << RED << "🔥 FINAL STRETCH! 🔥\n" << RESET;
-    cout << "The leaders are giving everything they've got!\n";
+    cout << "\n" << RED << "RECTA FINAL!\n" << RESET;
+    cout << "Los lideres estan dando todo lo que tienen!\n";
     sleepMs(1000);
     
     // Show final positions battle
-    cout << "\n" << YELLOW << "🏆 FINAL POSITIONS: 🏆\n" << RESET;
+    cout << "\n" << YELLOW << "POSICIONES FINALES:\n" << RESET;
     for (int i = 0; i < 3 && i < (int)resultados.size(); i++) {
         cout << WHITE << (i+1) << ". " << resultados[i].pilotName 
              << " (" << resultados[i].team << ")\n" << RESET;
@@ -855,15 +848,15 @@ vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<s
     }
     
     sleepMs(1000);
-    cout << RED << "\n🏁 RACE FINISHED! 🏁\n" << RESET;
+    cout << RED << "\nCARRERA TERMINADA!\n" << RESET;
     cout << "===================\n";
     
     return resultados;
 }
 
-// Función para mostrar el podio al final
+// Funcion para mostrar el podio al final
 void showPodium(const vector<RaceResult>& results) {
-    cout << "\n" << YELLOW << "🏆 ========== PODIUM ========== 🏆\n" << RESET;
+    cout << "\n" << YELLOW << "========== PODIO ==========\n" << RESET;
     
     sleepMs(1000);
     
@@ -873,20 +866,20 @@ void showPodium(const vector<RaceResult>& results) {
         string emoji;
         
         switch (i) {
-            case 0: medal = "🥇 1st"; color = YELLOW; emoji = "🎉"; break;
-            case 1: medal = "🥈 2nd"; color = WHITE; emoji = "👏"; break;
-            case 2: medal = "🥉 3rd"; color = ORANGE; emoji = "👍"; break;
-            case 3: medal = "🏁 4th"; color = BLUE; emoji = "💪"; break;
-            case 4: medal = "🏁 5th"; color = GREEN; emoji = "⭐"; break;
+            case 0: medal = "1er"; color = YELLOW; emoji = " "; break;
+            case 1: medal = "2do"; color = WHITE; emoji = " "; break;
+            case 2: medal = "3er"; color = ORANGE; emoji = " "; break;
+            case 3: medal = "4to"; color = BLUE; emoji = " "; break;
+            case 4: medal = "5to"; color = GREEN; emoji = " "; break;
         }
         
         int minutes = results[i].raceTime / 60000;
         int seconds = (results[i].raceTime % 60000) / 1000;
         int milliseconds = results[i].raceTime % 1000;
         
-        cout << color << medal << " place: " << emoji << " "
+        cout << color << medal << " lugar: " << emoji << " "
              << results[i].pilotName << " (" << results[i].team << ")\n";
-        cout << "   ⏱️  Time: " << minutes << ":" << setfill('0') << setw(2) << seconds 
+        cout << "   Tiempo: " << minutes << ":" << setfill('0') << setw(2) << seconds 
              << "." << setw(3) << milliseconds << RESET << "\n";
              
         sleepMs(800); // Pause between each position announcement
@@ -894,18 +887,18 @@ void showPodium(const vector<RaceResult>& results) {
     }
     
     // Show the winner's car with fanfare
-    cout << YELLOW << "🏆 CHAMPION'S CAR 🏆\n" << RESET;
+    cout << YELLOW << "AUTO DEL CAMPEON\n" << RESET;
     sleepMs(500);
     showPilotCar(results[0].pilotId);
-    cout << "\n" << YELLOW << "🎊 ¡FELICITACIONES AL GANADOR! 🎊\n" << RESET;
+    cout << "\n" << YELLOW << "FELICITACIONES AL GANADOR!\n" << RESET;
 }
 
-// Función para mostrar tipos de apuesta (sin saldo)
+// Funcion para mostrar tipos de apuesta (sin saldo)
 void showBetTypes() {
-    cout << "\n" << CYAN << "=== BET TYPES ===\n" << RESET;
-    cout << "1. GRAND TOTAL (2 races - Prize x3)\n";
-    cout << "2. GRAND PRIX (1 race - Prize x2)\n";
-    cout << "3. SPRINT (1 race - Prize x1.5)\n";
+    cout << "\n" << CYAN << "=== TIPOS DE APUESTA ===\n" << RESET;
+    cout << "1. GRAN TOTAL (2 carreras - Premio x3)\n";
+    cout << "2. GRAN PREMIO (1 carrera - Premio x2)\n";
+    cout << "3. SPRINT (1 carrera - Premio x1.5)\n";
 }
 
 // Función para hacer una apuesta
@@ -918,7 +911,7 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     
     showBetTypes();
     
-    cout << "\n¿Qué tipo de apuesta quieres hacer? (1-3): ";
+    cout << "\nQue tipo de apuesta quieres hacer? (1-3): ";
     int betType = askNumber(1, 3);
     
     string typeName;
@@ -927,12 +920,12 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     
     switch (betType) {
         case 1: 
-            typeName = "Grand Total"; 
+            typeName = "Gran Total"; 
             multiplier = 3.0f; 
             numRaces = 2;
             break;
         case 2: 
-            typeName = "Grand Prix"; 
+            typeName = "Gran Premio"; 
             multiplier = 2.0f; 
             numRaces = 1;
             break;
@@ -945,12 +938,12 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     
     cout << "\n" << YELLOW << "Has elegido: " << typeName << RESET;
     if (numRaces == 2) {
-        cout << ORANGE << " (¡Debes ganar ambas carreras!)" << RESET;
+        cout << ORANGE << " (Debes ganar ambas carreras!)" << RESET;
     }
     cout << "\n";
     
     // Show available pilots with enhanced display
-    cout << "\n" << CYAN << "🏎️  AVAILABLE PILOTS 🏎️\n" << RESET;
+    cout << "\n" << CYAN << "PILOTOS DISPONIBLES\n" << RESET;
     cout << "=============================\n";
     for (size_t i = 0; i < pilots.size(); i++) {
         cout << (i + 1) << ". " << WHITE << pilots[i] << RESET 
@@ -958,21 +951,21 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     }
     cout << "=============================\n";
     
-    cout << "\n¿En qué piloto quieres apostar? (1-" << pilots.size() << "): ";
+    cout << "\nEn que piloto quieres apostar? (1-" << pilots.size() << "): ";
     int chosenPilot = askNumber(1, (int)pilots.size()) - 1;
     
-    cout << "\n" << CYAN << "💰 Saldo Actual: $" << player.wallet << RESET;
-    cout << "\n¿Cuánto dinero quieres apostar?: $";
+    cout << "\n" << CYAN << "Saldo Actual: $" << player.wallet << RESET;
+    cout << "\nCuanto dinero quieres apostar?: $";
     int betAmount;
     cin >> betAmount;
     
     // Validate bet amount
     if (betAmount > player.wallet) {
-        cout << RED << "¡No tienes suficiente dinero!" << RESET << endl;
+        cout << RED << "No tienes suficiente dinero!" << RESET << endl;
         return;
     }
     
-    cout << "\n" << GREEN << "🎯 RESUMEN DE APUESTA:\n" << RESET;
+    cout << "\n" << GREEN << "RESUMEN DE APUESTA:\n" << RESET;
     cout << "================================\n";
     cout << "Tipo: " << YELLOW << typeName << RESET << "\n";
     cout << "Piloto: " << WHITE << pilots[chosenPilot] << RESET << "\n";
@@ -981,7 +974,7 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     cout << "Premio potencial: " << GREEN << "$" << (int)(betAmount * multiplier) << RESET << "\n";
     cout << "================================\n\n";
     
-    cout << RED << "🏁 Presiona ENTER para comenzar la carrera..." << RESET;
+    cout << RED << "Presiona ENTER para comenzar la carrera..." << RESET;
     cin.ignore();
     cin.get();
     
@@ -991,7 +984,7 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     
     for (int race = 1; race <= numRaces; race++) {
         if (numRaces > 1) {
-            cout << "\n" << MAGENTA << "🏁 === RACE " << race << " OF " << numRaces << " === 🏁\n" << RESET;
+            cout << "\n" << MAGENTA << "=== CARRERA " << race << " DE " << numRaces << " ===\n" << RESET;
         }
         
         vector<RaceResult> resultados = simulateRace(pilots, ids, teams);
@@ -1003,10 +996,10 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
         if (wonThisRace) {
             cout << "\n" << GREEN;
             int indice = rand() % congratulationMessages.size();
-            cout << "🎉 " << congratulationMessages[indice] << "\n" << RESET;
-            cout << GREEN << "🏆 ¡" << pilots[chosenPilot] << " ganó la carrera " << race << "! 🏆\n" << RESET;
+            cout << " " << congratulationMessages[indice] << "\n" << RESET;
+            cout << GREEN << " " << pilots[chosenPilot] << " gano la carrera " << race << "!\n" << RESET;
         } else {
-            cout << "\n" << RED << "❌ " << pilots[chosenPilot] << " no ganó esta carrera.\n" << RESET;
+            cout << "\n" << RED << " " << pilots[chosenPilot] << " no gano esta carrera.\n" << RESET;
             cout << "Ganador: " << YELLOW << resultados[0].pilotName << RESET << " (" << resultados[0].team << ")\n";
             wonBet = false;
             if (numRaces > 1) {
@@ -1016,25 +1009,25 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
         }
         
         if (race < numRaces) {
-            cout << "\n🏁 Presiona ENTER para la siguiente carrera...";
+            cout << "\nPresiona ENTER para la siguiente carrera...";
             cin.get();
         }
     }
     
     // Calculate final prize with dramatic reveal
-    cout << "\n" << CYAN << "🎰 CALCULANDO RESULTADOS..." << RESET;
+    cout << "\n" << CYAN << "CALCULANDO RESULTADOS..." << RESET;
     sleepMs(1500);
     
     if (wonBet) {
         totalPrize = (int)(betAmount * multiplier);
         player.wallet = winnerResult(player.wallet, totalPrize);
 
-        cout << "\n" << YELLOW << "🎊 ¡FELICITACIONES! ¡GANASTE TU APUESTA! 🎊\n" << RESET;
+        cout << "\n" << YELLOW << "FELICITACIONES! GANASTE TU APUESTA!\n" << RESET;
         cout << "Premio ganado: " << GREEN << "$" << totalPrize << RESET << "\n";
         cout << "Nuevo saldo: " << GREEN << "$" << player.wallet << RESET << "\n";
     } else {
         player.wallet = loserResult(player.wallet, betAmount);
-        cout << "\n" << RED << "😔 Lo siento, perdiste tu apuesta.\n" << RESET;
+        cout << "\n" << RED << "Lo siento, perdiste tu apuesta.\n" << RESET;
         cout << "Cantidad perdida: " << RED << "$" << betAmount << RESET << "\n";
         cout << "Saldo restante: " << CYAN << "$" << player.wallet << RESET << "\n";
     }
@@ -1090,8 +1083,8 @@ void showBettorRanking() {
              return a.totalMoney > b.totalMoney;
          });
     
-    cout << "\n" << YELLOW << "===== BETTORS RANKING =====\n" << RESET;
-    cout << "Pos | Name       | Money     | Won     | % Success\n";
+    cout << "\n" << YELLOW << "===== RANKING DE APOSTADORES =====\n" << RESET;
+    cout << "Pos | Nombre     | Dinero    | Ganadas | % Exito\n";
     cout << "----+------------+-----------+---------+-----------\n";
     
     for (size_t i = 0; i < bettorRanking.size() && i < 10; i++) {
@@ -1110,7 +1103,7 @@ void showBettorRanking() {
     
     if (!bettorRanking.empty()) {
         cout << "\n" << YELLOW << bettorRanking[0].name 
-             << " está dominando las apuestas con $" << bettorRanking[0].totalMoney << "!\n" << RESET;
+             << " esta dominando las apuestas con $" << bettorRanking[0].totalMoney << "!\n" << RESET;
     }
 }
 
@@ -1121,19 +1114,19 @@ void showBettingHistory() {
         return;
     }
     
-    cout << "\n" << CYAN << "=== BETTING HISTORY ===\n" << RESET;
+    cout << "\n" << CYAN << "=== HISTORIAL DE APUESTAS ===\n" << RESET;
     
     for (size_t i = 0; i < bettingHistory.size(); i++) {
         const auto& bet = bettingHistory[i];
-        string result = bet.won ? string(GREEN) + "WON" : string(RED) + "LOST";
+        string result = bet.won ? string(GREEN) + "GANO" : string(RED) + "PERDIO";
         
-        cout << "\nBet #" << (i + 1) << ":\n";
-        cout << "   Type: " << bet.betType << "\n";
-        cout << "   Pilot: " << bet.chosenPilot << "\n";
-        cout << "   Bet: $" << bet.betAmount << "\n";
-        cout << "   Result: " << result << RESET << "\n";
+        cout << "\nApuesta #" << (i + 1) << ":\n";
+        cout << "   Tipo: " << bet.betType << "\n";
+        cout << "   Piloto: " << bet.chosenPilot << "\n";
+        cout << "   Apuesta: $" << bet.betAmount << "\n";
+        cout << "   Resultado: " << result << RESET << "\n";
         if (bet.won) {
-            cout << "   Prize: " << GREEN << "$" << bet.prize << RESET << "\n";
+            cout << "   Premio: " << GREEN << "$" << bet.prize << RESET << "\n";
         }
     }
     
@@ -1153,14 +1146,14 @@ void showBettingHistory() {
     float successPercentage = bettingHistory.size() > 0 ? 
                               (float)wonBets / bettingHistory.size() * 100 : 0;
     
-    cout << "\n" << YELLOW << "GENERAL STATISTICS:\n" << RESET;
-    cout << "Total bets: " << bettingHistory.size() << "\n";
-    cout << "Won bets: " << GREEN << wonBets << RESET << "\n";
-    cout << "Success percentage: " << (successPercentage >= 50 ? GREEN : RED) 
+    cout << "\n" << YELLOW << "ESTADISTICAS GENERALES:\n" << RESET;
+    cout << "Total de apuestas: " << bettingHistory.size() << "\n";
+    cout << "Apuestas ganadas: " << GREEN << wonBets << RESET << "\n";
+    cout << "Porcentaje de exito: " << (successPercentage >= 50 ? GREEN : RED) 
          << fixed << setprecision(1) << successPercentage << "%" << RESET << "\n";
-    cout << "Money won: " << GREEN << "$" << moneyWon << RESET << "\n";
-    cout << "Money lost: " << RED << "$" << moneyLost << RESET << "\n";
-    cout << "Net balance: " << (moneyWon - moneyLost >= 0 ? GREEN : RED) 
+    cout << "Dinero ganado: " << GREEN << "$" << moneyWon << RESET << "\n";
+    cout << "Dinero perdido: " << RED << "$" << moneyLost << RESET << "\n";
+    cout << "Balance neto: " << (moneyWon - moneyLost >= 0 ? GREEN : RED) 
          << "$" << (moneyWon - moneyLost) << RESET << "\n";
 }
 
@@ -1207,20 +1200,20 @@ void startBettingSystem() {
         ids.push_back(customPilotId);
         teams.push_back(customTeam);
         
-        cout << GREEN << "Custom pilot detected: " << customPilotName 
+        cout << GREEN << "Piloto personalizado detectado: " << customPilotName 
              << " (" << customTeam << ")!\n" << RESET;
-        cout << YELLOW << "Now you can bet on your custom pilot.\n" << RESET;
+        cout << YELLOW << "Ahora puedes apostar por tu piloto personalizado.\n" << RESET;
     }
     
     int option;
     
     do {
-        cout << "\n" << MAGENTA << "====== F1 BETTING SYSTEM ======\n" << RESET;
+        cout << "\n" << MAGENTA << "====== SISTEMA DE APUESTAS F1 ======\n" << RESET;
         cout << "1. Hacer nueva apuesta\n";
         cout << "2. Ver historial de apuestas\n";
         cout << "3. Ver ranking de apostadores\n";
-        cout << "4. Regresar al menú principal\n";
-        cout << "\nElige una opción (1-4): ";
+        cout << "4. Regresar al menu principal\n";
+        cout << "\nElige una opcion (1-4): ";
         
         option = askNumber(1, 4);
         
@@ -1235,11 +1228,11 @@ void startBettingSystem() {
                 showBettorRanking();
                 break;
             case 4:
-                cout << GREEN << "¡Gracias por apostar!\n" << RESET;
+                cout << GREEN << "Gracias por apostar!\n" << RESET;
                 break;
         }
         
-        if (option != 4) {
+        if (option != 4 && option != 1) {
             cout << "\nPresiona ENTER para continuar...";
             cin.ignore();
             cin.get();
@@ -1248,59 +1241,6 @@ void startBettingSystem() {
     } while (option != 4);
 }
 
-
-//Post-race menu function
-    void postRaceMenu(players& p) {
-        int option;
-        
-        do {
-            cout << "\n🏁 ¡CARRERA COMPLETADA! 🏁\n";
-            cout << "Saldo actual: $" << p.wallet << endl;
-            cout << "\n--- ¿Qué te gustaría hacer ahora? ---\n";
-            cout << "1. Correr de nuevo\n";
-            cout << "2. Ver ranking de apuestas\n";
-            cout << "3. Ver historial de apuestas\n";
-            cout << "4. Volver al menú principal\n";
-            cout << "Selecciona una opción: ";
-            cin >> option;
-            cin.ignore();
-            
-            // Update global player
-            player = p;
-            
-            switch (option) {
-                case 1:
-                    // Simplemente volver al menú principal para nueva carrera
-                    cout << "\n¡Listo para una nueva carrera!\n";
-                    return;
-                    
-                case 2:
-                    cout << "\n=== RANKING DE APOSTADORES ===\n";
-                    showBettorRanking();
-                    cout << "\nPresiona ENTER para continuar...";
-                    cin.get();
-                    break;
-                    
-                case 3:
-                    cout << "\n=== HISTORIAL DE APUESTAS ===\n";
-                    showBettingHistory();
-                    cout << "\nPresiona ENTER para continuar...";
-                    cin.get();
-                    break;
-                    
-                case 4:
-                    cout << "\nRegresando al menú principal...\n";
-                    break;
-                    
-                default:
-                    cout << "Opción inválida. Por favor, intenta de nuevo.\n";
-            }
-            
-            // Update local player with changes
-            p = player;
-            
-        } while (option != 4);
-    }
 
 //Validation functions
 
@@ -1313,11 +1253,11 @@ int askNumber(int minimum, int maximum) {
                 cin.ignore(10000, '\n'); // Clean buffer after valid input
                 return chosenNumber;
             } else {
-                cout << RED << "That number is not in the range (" << minimum << "-" << maximum << ").\n Try another: " << RESET;
+                cout << RED << "Ese número no está en el rango (" << minimum << "-" << maximum << ").\n Intenta otro: " << RESET;
                 cin.ignore(10000, '\n'); // Clean buffer after invalid input
             }
         } else {
-            cout << RED << "That's not a valid number buddy.\n Just numbers please. Try again: " << RESET;
+            cout << RED << "Eso no es un numero valido, amigo.\n Solo numeros por favor. Intenta de nuevo: " << RESET;
             cin.clear();
             cin.ignore(10000, '\n');
         }
@@ -1342,14 +1282,14 @@ string askName(const string& message) {
         }
         
         if (userName.empty() || onlySpaces) {
-            cout << RED << "Hey, you can't leave this empty.\n Please write something.\n" << RESET;
+            cout << RED << "Oye, no puedes dejar esto vacío.\n Por favor escribe algo.\n" << RESET;
             continue;
         }
         
         // Check that it only contains letters and spaces (no numbers or symbols)
         for (char letter : userName) {
             if (!((letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z') || letter == ' ')) {
-                cout << RED << "Only letters and spaces buddy. No numbers or weird symbols.\n Try again.\n" << RESET;
+                cout << RED << "Solo letras y espacios, amigo. Sin numeros ni simbolos raros.\n Intenta de nuevo.\n" << RESET;
                 goto tryAgain;
             }
         }
@@ -1382,14 +1322,14 @@ string askName(const string& message) {
 
     }
 
-// Función para mostrar estadísticas de carrera e información de pilotos
+// Funcion para mostrar estadisticas de carrera e informacion de pilotos
 void showRaceStatistics(const vector<string>& pilots, const vector<string>& teams) {
-    cout << "\n" << CYAN << "📊 RACE STATISTICS & PILOT INFO 📊\n" << RESET;
+    cout << "\n" << CYAN << "ESTADISTICAS DE CARRERA E INFO DE PILOTOS\n" << RESET;
     cout << "==========================================\n";
     
     // Show each pilot with enhanced information
     for (size_t i = 0; i < pilots.size(); i++) {
-        cout << "\n" << WHITE << "🏎️  " << pilots[i] << RESET;
+        cout << "\n" << WHITE << " " << pilots[i] << RESET;
         cout << " (" << MAGENTA << teams[i] << RESET << ")\n";
         
         // Generate pseudo-random stats for each pilot
@@ -1398,36 +1338,36 @@ void showRaceStatistics(const vector<string>& pilots, const vector<string>& team
         int races = podiums + (rand() % 30) + 20;
         float winRate = ((float)careerWins / races) * 100;
         
-        cout << "   Career Wins: " << GREEN << careerWins << RESET;
-        cout << " | Podiums: " << YELLOW << podiums << RESET;
-        cout << " | Races: " << BLUE << races << RESET;
-        cout << " | Win Rate: " << (winRate > 15 ? GREEN : (winRate > 8 ? YELLOW : RED)) 
+        cout << "   Victorias: " << GREEN << careerWins << RESET;
+        cout << " | Podios: " << YELLOW << podiums << RESET;
+        cout << " | Carreras: " << BLUE << races << RESET;
+        cout << " | % Victorias: " << (winRate > 15 ? GREEN : (winRate > 8 ? YELLOW : RED)) 
              << fixed << setprecision(1) << winRate << "%" << RESET << "\n";
     }
     
-    cout << "\n" << YELLOW << "💡 TIP: Any pilot can win on race day! Form and luck matter most!" << RESET << "\n";
+    cout << "\n" << YELLOW << "CONSEJO: Cualquier piloto puede ganar el dia de la carrera! La forma y la suerte importan mas!" << RESET << "\n";
     cout << "==========================================\n";
 }
 
-// Función para mostrar emoción pre-carrera
+// Funcion para mostrar emocion pre-carrera
 void showPreRaceExcitement() {
     vector<string> preRaceComments = {
-        "¡La atmósfera está eléctrica hoy aquí!",
-        "¡Todos los pilotos están listos para dar lo mejor!",
-        "¡Esta podría ser la carrera de cualquiera!",
-        "¡La multitud se está volviendo más ruidosa por minuto!",
-        "¡Las condiciones climáticas son perfectas para correr!",
-        "¡La batalla por el campeonato continúa hoy!",
-        "¡Cada posición será peleada duramente!",
-        "¡Los conductores están calentando sus motores!",
-        "¡Los equipos de boxes están haciendo ajustes finales!",
-        "¡Esto es de lo que se trata la Fórmula 1!"
+        "La atmosfera esta electrica hoy aqui!",
+        "Todos los pilotos estan listos para dar lo mejor!",
+        "Esta podria ser la carrera de cualquiera!",
+        "La multitud se esta volviendo mas ruidosa por minuto!",
+        "Las condiciones climaticas son perfectas para correr!",
+        "La batalla por el campeonato continua hoy!",
+        "Cada posicion sera peleada duramente!",
+        "Los conductores estan calentando sus motores!",
+        "Los equipos de boxes estan haciendo ajustes finales!",
+        "Esto es de lo que se trata la Formula 1!"
     };
     
-    cout << "\n" << MAGENTA << "🎪 PRE-RACE ATMOSPHERE 🎪\n" << RESET;
-    cout << YELLOW << "🎤 COMENTARISTA: " << preRaceComments[rand() % preRaceComments.size()] << RESET << "\n";
+    cout << "\n" << MAGENTA << "AMBIENTE PRE-CARRERA\n" << RESET;
+    cout << YELLOW << "COMENTARISTA: " << preRaceComments[rand() % preRaceComments.size()] << RESET << "\n";
     sleepMs(1000);
-    cout << YELLOW << "📻 RADIO: " << preRaceComments[rand() % preRaceComments.size()] << RESET << "\n\n";
+    cout << YELLOW << "RADIO: " << preRaceComments[rand() % preRaceComments.size()] << RESET << "\n\n";
 }
 
 

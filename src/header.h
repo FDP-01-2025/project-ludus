@@ -92,9 +92,11 @@ struct Team {
 
 // ========== FUNCTION DECLARATIONS ==========
 
+// Utility Functions
+void sleepMs(int milliseconds);
+
 // Login and user functions
 void showTitle();
-void showMenu();
 bool onlyLetters(const string& str);
 void validateNames(players& p);
 
@@ -135,8 +137,10 @@ void startF1Simulator();
 // Betting Functions
 string getCustomCarType();
 void showPilotCar(int pilotId);
-int simulateRaceTime();
 void showComment();
+void showLapComment(int lapNumber);
+void showPreRaceExcitement();
+void showRaceStatistics(const vector<string>& pilots, const vector<string>& teams);
 vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<string> teams);
 void showPodium(const vector<RaceResult>& results);
 void showBetTypes();
@@ -146,8 +150,5 @@ void showBettorRanking();
 void showBettingHistory();
 bool loadCustomPilot(string& name, int& id, string& team);
 void startBettingSystem();
-
-// Game Flow Functions
-void postRaceMenu(players& p);
 
 #endif
