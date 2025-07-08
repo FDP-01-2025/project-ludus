@@ -1,7 +1,7 @@
 #include "header.h"
 using namespace std;
 
-players player1; 
+players player1; //struct que se usa en todas las librerias
 
 // Define the global player variable that header.cpp expects
 players player;
@@ -14,23 +14,49 @@ int main() {
     int option;
     do {
         cout << "\n----- MENÚ PRINCIPAL -----\n";
-        cout << "  1. Jugar\n";
+        cout << "  1. Un jugador\n";
         cout << "  2. Salir\n";
         cout << "Selecciona una opción: ";
         cin >> option;
-        cin.ignore();
+        if (!(cin >> option)) { //validacion para admitir solo numeros
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Por favor entre un numero (1 o 2).\n";
+            continue;
+        }
+        cin.ignore(10000, '\n');
 
         switch (option) {
             case 1:
                 validateNames(player1); // validates name and age
-                player1.wallet = 1000;
+                player1.wallet = 1000000.00;
                 player1.chosenRace = {"", "", "", 0};
                 player = player1; // Set global player for functions to use
                 principalMenu(player1); // main menu for single player
                 break;
 
             case 2:
-                cout << "\n¡Gracias por jugar!  ¡Nos vemos la próxima vez, piloto!\n";
+                cout << "\n¡Gracias por jugar! 🏁 ¡Nos vemos la próxima vez, piloto!\n";
+                cout << "\n=== PLAYER 1 ===\n";
+                validateNames(player1);
+                player1.wallet = 1000000.00;
+                player1.chosenRace = {"", "", "", 0};
+
+                cout << "\n=== PLAYER 2 ===\n";
+                do {validateNames(player2);
+                    if (player2.userName == player1.userName) {
+                    cout << "No pueden tener el mismo nombre. Elija otro por favor.\n"; // Volver a pedir nombre...
+                    }
+                } while (player2.userName == player1.userName);
+                player2.wallet = 1000000.00;
+                player2.chosenRace = {"", "", "", 0};
+
+                // Multiplayer function
+                multiplayer(player1, player2);
+                break;
+
+            case 3:
+                cout << "\nGracias por jugar 🏁 hasta la proxima!\n";
                 break;
 
             default:
@@ -47,7 +73,7 @@ void principalMenu(players& p){
     
     // Welcome message
     cout << "\n*************************" << endl;
-    cout << "  BIENVENIDO " << p.userName << " " << endl;
+    cout << " 🏁🏁🏁 BIENVENIDO " << p.userName << " 🏁🏁🏁" << endl;
     cout << "*************************" << endl;
     cout << "Tu saldo actual: $" << p.wallet << endl;
 
@@ -59,6 +85,12 @@ void principalMenu(players& p){
         cout << "4. Salir al menú principal\n";
         cout << "Selecciona una opción: ";
         cin >> opcion;
+        if (!(cin >> option)) { //validacion para admitir solo numeros
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Por favor ingrese un numero.\n";
+            continue;
+        }
         cin.ignore();
 
         // Update global player before calling functions
@@ -88,7 +120,7 @@ void principalMenu(players& p){
                 startBettingSystem(); // manage bets only
                 break;
             case 4:
-                cout << "\nRegresando al menú principal. ¡Hasta luego " << p.userName << "!\n";
+                cout << "\n Regresando al menú principal. ¡Hasta luego! " << p.userName << "!\n";
                 break;
             default:
                 cout << "Opción inválida. Por favor, intenta de nuevo.\n";
@@ -100,9 +132,9 @@ void principalMenu(players& p){
 }
 
 void multiplayer(players& p1, players& p2) {
-    cout << "\n--- Multiplayer Race ---\n";
+    cout << "\n--- Multijugador ---\n";
 
-    cout << "\n" << p1.userName << " choose your track:\n";
+    cout << "\n" << p1.userName << " Elige la pista: \n";
     player = p1; // Set global player for player 1
     tracksF1();
 
@@ -190,11 +222,12 @@ void postRaceMenu(players& p) {
                 break;
                 
             case 5:
-                cout << "\nReturning to main menu...\n";
-                break;
+                cout << "\n Returning to main menu...\n";
+                return;
                 
             default:
                 cout << "Invalid option. Please try again.\n";
+                break;
         }
         
         // Update local player with changes

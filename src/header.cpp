@@ -1053,6 +1053,7 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     
     cout << "\n" << MAGENTA << "Presiona ENTER para continuar..." << RESET;
     cin.get();
+>>>>>>> 5d9baad35495d9871277a40bac11a795273a3679
 }
 
 // Función para actualizar el ranking de apostadores
