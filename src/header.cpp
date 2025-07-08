@@ -1074,11 +1074,14 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     newBet.prize = wonBet ? totalPrize : 0;
     
     bettingHistory.push_back(newBet);
+<<<<<<< HEAD
     updateBettorRanking(player.userName, wonBet, wonBet ? totalPrize : -betAmount);
+=======
     updateBettorRanking("Player", wonBet, wonBet ? totalPrize : -betAmount);
     
     cout << "\n" << MAGENTA << "Press ENTER to continue..." << RESET;
     cin.get();
+>>>>>>> 5d9baad35495d9871277a40bac11a795273a3679
 }
 
 // Function to update the bettor ranking

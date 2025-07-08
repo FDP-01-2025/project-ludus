@@ -19,14 +19,13 @@ int main() {
         cout << "  2. Multiplayer (2 players)\n";
         cout << "  3. Exit\n";
         cout << "Select an option: ";
-        cin >> option;
         if (!(cin >> option)) { //validacion para admitir solo numeros
             cin.clear();
             cin.ignore(10000, '\n');
             cout << "Invalid input. Please enter a number.\n";
             continue;
         }
-        cin.ignore();
+        cin.ignore(10000, '\n');
 
         switch (option) {
             case 1:
@@ -44,10 +43,11 @@ int main() {
                 player1.chosenRace = {"", "", "", 0};
 
                 cout << "\n=== PLAYER 2 ===\n";
-                validateNames(player2);
-                if (player2.userName == player1.userName) {
+                do {validateNames(player2);
+                    if (player2.userName == player1.userName) {
                     cout << "Los jugadores no pueden tener el mismo nombre. Elija otro por favor.\n"; // Volver a pedir nombre...
                     }
+                } while (player2.userName == player1.userName);
                 player2.wallet = 1000000.00;
                 player2.chosenRace = {"", "", "", 0};
 
@@ -84,7 +84,6 @@ void principalMenu(players& p){
         cout << "3. Betting system\n";
         cout << "4. Exit to main menu\n";
         cout << "Select an option: ";
-        cin >> opcion;
         if (!(cin >> option)) { //validacion para admitir solo numeros
             cin.clear();
             cin.ignore(10000, '\n');
