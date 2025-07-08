@@ -145,17 +145,13 @@ int askNumber(int minimum, int maximum);
 
 ## 🎮 Mockup del juego
 
-].----------------. .----------------.
-| .--------------. | | .--------------. |
-| | _________ | | | | __ | |
-| | |_ ___ | | | | | / | | |
-| | | |_ _| | | | | `| | | |
-| | | _| | | | | | | | |
-| | | | | | | | | | | |
-| | || | | | | || | |
-| | | | | | | |
-| '--------------' | | '--------------' |
-'----------------' '----------------'
+    💨 WELCOME TO THE GAME: RANDOM RACING LUCK 🚦
+
+          🏁 WELCOME PLAYER! 🏁
+          
+           Player name (only letters allowed):
+
+
 1. Clona este repositorio en tu máquina local:
    ```bash
    git clone [https://github.com/FDP-01-2025/project-ludus.git]
