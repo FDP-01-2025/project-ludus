@@ -1,24 +1,22 @@
 #include "header.h"
 using namespace std;
 
-players player1, player2; //struct que se usa en todas las librerias
+players player1; //struct que se usa en todas las librerias
 
 // Define the global player variable that header.cpp expects
 players player;
 
 void principalMenu(players& p);
-void multiplayer(players& p1, players& p2);
 
 int main() {
     showTitle(); // Translated function name
 
     int option;
     do {
-        cout << "\n----- MAIN MENU -----\n";
-        cout << "  1. Single player\n";
-        cout << "  2. Multiplayer (2 players)\n";
-        cout << "  3. Exit\n";
-        cout << "Select an option: ";
+        cout << "\n----- MENÚ PRINCIPAL -----\n";
+        cout << "  1. Un jugador\n";
+        cout << "  2. Salir\n";
+        cout << "Selecciona una opción: ";
         cin >> option;
         cin.ignore();
 
@@ -32,29 +30,14 @@ int main() {
                 break;
 
             case 2:
-                cout << "\n=== PLAYER 1 ===\n";
-                validateNames(player1);
-                player1.wallet = 1000000.00;
-                player1.chosenRace = {"", "", "", 0};
-
-                cout << "\n=== PLAYER 2 ===\n";
-                validateNames(player2);
-                player2.wallet = 1000000.00;
-                player2.chosenRace = {"", "", "", 0};
-
-                // Multiplayer function
-                multiplayer(player1, player2);
-                break;
-
-            case 3:
-                cout << "\nThanks for playing 🏁 See you next time, pilot!\n";
+                cout << "\n¡Gracias por jugar! 🏁 ¡Nos vemos la próxima vez, piloto!\n";
                 break;
 
             default:
-                cout << "Invalid option. Please try again.\n";
+                cout << "Opción inválida. Por favor, intenta de nuevo.\n";
         }
 
-    } while (option != 3);
+    } while (option != 2);
 
     return 0;
 }
@@ -64,17 +47,17 @@ void principalMenu(players& p){
     
     // Welcome message
     cout << "\n*************************" << endl;
-    cout << " 🏁🏁🏁 WELCOME " << p.userName << " 🏁🏁🏁" << endl;
+    cout << " 🏁🏁🏁 BIENVENIDO " << p.userName << " 🏁🏁🏁" << endl;
     cout << "*************************" << endl;
-    cout << "Your current balance: $" << p.wallet << endl;
+    cout << "Tu saldo actual: $" << p.wallet << endl;
 
     do {
-        cout << "\n--- Game Flow ---\n";
-        cout << "1. Choose track and start race\n";
-        cout << "2. Show cars\n";
-        cout << "3. Betting system\n";
-        cout << "4. Exit to main menu\n";
-        cout << "Select an option: ";
+        cout << "\n--- Flujo del Juego ---\n";
+        cout << "1. Elegir pista y empezar carrera\n";
+        cout << "2. Mostrar autos\n";
+        cout << "3. Sistema de apuestas\n";
+        cout << "4. Salir al menú principal\n";
+        cout << "Selecciona una opción: ";
         cin >> opcion;
         cin.ignore();
 
@@ -84,14 +67,14 @@ void principalMenu(players& p){
         switch (opcion) {
             case 1:
                 // Complete race flow: Track → Cars → Betting
-                cout << "\n=== STEP 1: CHOOSE YOUR TRACK ===\n";
+                cout << "\n=== PASO 1: ELIGE TU PISTA ===\n";
                 tracksF1(); // choose track
                 
-                cout << "\n=== STEP 2: MEET THE DRIVERS ===\n";
+                cout << "\n=== PASO 2: CONOCE A LOS PILOTOS ===\n";
                 startF1Simulator(); // show cars
                 
-                cout << "\n=== STEP 3: PLACE YOUR BET ===\n";
-                cout << "Your available balance: $" << player.wallet << endl;
+                cout << "\n=== PASO 3: HAZ TU APUESTA ===\n";
+                cout << "Tu saldo disponible: $" << player.wallet << endl;
                 startBettingSystem(); // manage bets
                 
                 // After race, show post-race menu
@@ -101,49 +84,17 @@ void principalMenu(players& p){
                 startF1Simulator(); // show cars only
                 break;
             case 3:
-                cout << "Your available balance: $" << player.wallet << endl;
+                cout << "Tu saldo disponible: $" << player.wallet << endl;
                 startBettingSystem(); // manage bets only
                 break;
             case 4:
-                cout << "\nReturning to main menu. See you later " << p.userName << "!\n";
+                cout << "\nRegresando al menú principal. ¡Hasta luego " << p.userName << "!\n";
                 break;
             default:
-                cout << "Invalid option. Please try again.\n";
+                cout << "Opción inválida. Por favor, intenta de nuevo.\n";
         }
         
         // Update local player with any changes from global
         p = player;
     } while (opcion != 4);
-}
-
-void multiplayer(players& p1, players& p2) {
-    cout << "\n--- Multiplayer Race ---\n";
-
-    cout << "\n" << p1.userName << " choose your track:\n";
-    player = p1; // Set global player for player 1
-    tracksF1();
-
-    cout << "\n" << p2.userName << " choose your track:\n";
-    player = p2; // Set global player for player 2
-    tracksF1();
-
-    cout << "\nBoth players bet:\n";
-    cout << p1.userName << " places bet:\n";
-    player = p1; // Set global player for player 1
-    startBettingSystem();
-    p1 = player; // Update player 1 with changes
-    
-    cout << p2.userName << " places bet:\n";
-    player = p2; // Set global player for player 2
-    startBettingSystem();
-    p2 = player; // Update player 2 with changes
-
-    cout << "\nSimulating race between " << p1.userName << " and " << p2.userName << "...\n";
-    player = p1; // Simulate for player 1
-    startF1Simulator();
-    
-    player = p2; // Simulate for player 2
-    startF1Simulator();
-
-    // then you can compare times and declare a winner
 }
