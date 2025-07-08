@@ -1,9 +1,7 @@
-//wallet.h
 #ifndef HEADER_H
 #define HEADER_H 
 
-
-// pretty colors for the cars
+// Pretty colors for the cars
 #define BLACK "\x1B[30m"
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
@@ -26,21 +24,23 @@
 
 using namespace std;
 // Track Structure
- struct Rtracks {
-        string name;
-        string located;
-        string difficulty_Level;
-        float large_km;
+struct Rtracks {
+    string name;
+    string located;
+    string difficulty_Level;
+    float large_km;
+};
 
-    };
-
+// Player Structure
 struct players {
     string userName;
     int age;
     float wallet;
     Rtracks chosenRace;
 };
- extern players player; //this is in the main file globally 
+
+// External global player variable (declared in main.cpp)
+extern players player; 
 
 // Structure to save bet data
 struct Bet {
@@ -51,6 +51,7 @@ struct Bet {
     bool won;
     int prize;
 };
+
 // Structure for race results
 struct RaceResult {
     string pilotName;
@@ -59,6 +60,7 @@ struct RaceResult {
     int position;
     int raceTime;       // In simulated milliseconds
 };
+
 // Structure for bettor ranking
 struct Bettor {
     string name;
@@ -67,7 +69,7 @@ struct Bettor {
     int totalBets;
 };
 
-    // Structure to save data for each pilot
+// Structure to save data for each pilot
 struct Pilot {
     string name;
     int id;
@@ -76,11 +78,11 @@ struct Pilot {
     string teamName;    // For custom pilots
 };
 
-// Structure to save data for each team
- // Simulator constants
+// Simulator constants
 const int howManyTeams = 5;
 const int pilotsPerTeam = 2;
 
+// Structure to save data for each team
 struct Team {
     string teamName;
     Pilot pilots[pilotsPerTeam];
@@ -88,98 +90,64 @@ struct Team {
 
 
 
-/*Function Declarations*/ 
+// ========== FUNCTION DECLARATIONS ==========
+
 // Login and user functions
 void showTitle();
 void showMenu();
 bool onlyLetters(const string& str);
 void validateNames(players& p);
 
-
-/**Validation Functions**/
-//Function to validate that it's an integer within the specified range
+// Validation Functions
 int askNumber(int minimum, int maximum);
-// Function to ask for a name (letters and spaces)
 string askName(const string& message);
 
-/*Wallet Functions*/
+// Wallet Functions
 float winnerResult(float personalWallet, float winnBet);
-float loserResult (float personalWallet, float winnBet);
-void registerChange(const players& p);
-void showHistory();
-// This function shows me all the teams in a list
-void showPilots(Team team);
-// This one shows me the pilots of a specific team
-void showTeams(Team teams[]);
-// This function reads an extra pilot from a file
-bool loadPilot(Pilot &p);
-// This function saves a new pilot to a file
-void createPilot();
-// This function shows the available cars to choose from
-void viewCars();
-// Main function of the F1 simulator (equivalent to the original main)
-void startF1Simulator();
-// Function to get the car type of the custom pilot
-string getCustomCarType();
-// Function to show the pilot's car according to their number
-void showPilotCar(int pilotId);
-// Function to simulate how long each pilot takes
-int simulateRaceTime();
-// Function to show comments during the race
-void showComment();
-// Function to make the complete race
-vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<string> teams);
-// Function to show the podium at the end
-void showPodium(const vector<RaceResult>& results);
-// Function to show bet types (without balance)
-void showBetTypes();
-// Function to place a bet
-void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector<string>& teams);
-// Function to update the bettor ranking
-void updateBettorRanking(const string& name, bool won, int moneyWon);
-// Function to show the bettor ranking
-void showBettorRanking();
-// Function to show betting history
-void showBettingHistory();
-// Function to load custom pilot if it exists
-bool loadCustomPilot(string& name, int& id, string& team);
-// Main function of the betting system
-void startBettingSystem();
+float loserResult(float personalWallet, float winnBet);
 
-/*Track Functions*/
-//This function helps us show the ascii of the vehicles
+// Track Functions
 void showAsciiTrack(string nameArchive);
-//Function to show tracks
 void tracksF1();
 
-/*Pilot Car Functions*/
-// Max Verstappen's car
-void drawCar1();
-// Sergio Pérez's car
-void drawCar2();
-// Lewis Hamilton's car
-void drawCar3();
-// George Russell's car
-void drawCar4();
-// Charles Leclerc's car
-void drawCar5();
-// Carlos Sainz's car
-void drawCar6();
-// Lando Norris's car
-void drawCar7(); 
-// Oscar Piastri's car
-void drawCar8();
-// Fernando Alonso's car
-void drawCar9();
-// Lance Stroll's car
-void drawCar10();
-// Custom car 1 - Sports style
-void drawCar11();
-// Custom car 2 - Classic style
-void drawCar12(); 
+// Pilot Car Functions
+void drawCar1();   // Max Verstappen's car
+void drawCar2();   // Sergio Pérez's car
+void drawCar3();   // Lewis Hamilton's car
+void drawCar4();   // George Russell's car
+void drawCar5();   // Charles Leclerc's car
+void drawCar6();   // Carlos Sainz's car
+void drawCar7();   // Lando Norris's car
+void drawCar8();   // Oscar Piastri's car
+void drawCar9();   // Fernando Alonso's car
+void drawCar10();  // Lance Stroll's car
+void drawCar11();  // Custom car 1 - Sports style
+void drawCar12();  // Custom car 2 - Classic style
 
-/*Game Flow Functions*/
-// Post-race menu function
+// Simulator Functions
+void showTeams(Team teams[]);
+void showPilots(Team team);
+bool loadPilot(Pilot &p);
+void createPilot();
+void viewCars();
+void startF1Simulator();
+
+// Betting Functions
+string getCustomCarType();
+void showPilotCar(int pilotId);
+int simulateRaceTime();
+void showComment();
+vector<RaceResult> simulateRace(vector<string> pilots, vector<int> ids, vector<string> teams);
+void showPodium(const vector<RaceResult>& results);
+void showBetTypes();
+void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector<string>& teams);
+void updateBettorRanking(const string& name, bool won, int moneyWon);
+void showBettorRanking();
+void showBettingHistory();
+bool loadCustomPilot(string& name, int& id, string& team);
+void startBettingSystem();
+
+// Game Flow Functions
 void postRaceMenu(players& p);
 
 #endif

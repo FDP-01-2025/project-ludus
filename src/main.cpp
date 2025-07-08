@@ -8,7 +8,6 @@ players player;
 
 void principalMenu(players& p);
 void multiplayer(players& p1, players& p2);
-void postRaceMenu(players& p);
 
 int main() {
     showTitle(); // Translated function name
@@ -74,8 +73,7 @@ void principalMenu(players& p){
         cout << "1. Choose track and start race\n";
         cout << "2. Show cars\n";
         cout << "3. Betting system\n";
-        cout << "4. History\n";
-        cout << "5. Exit to main menu\n";
+        cout << "4. Exit to main menu\n";
         cout << "Select an option: ";
         cin >> opcion;
         cin.ignore();
@@ -107,9 +105,6 @@ void principalMenu(players& p){
                 startBettingSystem(); // manage bets only
                 break;
             case 4:
-                showHistory(); // show previous actions
-                break;
-            case 5:
                 cout << "\nReturning to main menu. See you later " << p.userName << "!\n";
                 break;
             default:
@@ -118,7 +113,7 @@ void principalMenu(players& p){
         
         // Update local player with any changes from global
         p = player;
-    } while (opcion != 5);
+    } while (opcion != 4);
 }
 
 void multiplayer(players& p1, players& p2) {
@@ -150,78 +145,5 @@ void multiplayer(players& p1, players& p2) {
     player = p2; // Simulate for player 2
     startF1Simulator();
 
-    cout << "\nHistory of " << p1.userName << " and " << p2.userName << "...\n"; 
-    player = p1; // Show history for player 1
-    showHistory();
-    
-    player = p2; // Show history for player 2
-    showHistory();
-
     // then you can compare times and declare a winner
-}
-
-void postRaceMenu(players& p) {
-    int option;
-    
-    do {
-        cout << "\n🏁 RACE COMPLETED! 🏁\n";
-        cout << "Current balance: $" << p.wallet << endl;
-        cout << "\n--- What would you like to do next? ---\n";
-        cout << "1. Race again (Choose track → Cars → Bet)\n";
-        cout << "2. Choose different track\n";
-        cout << "3. View cars\n";
-        cout << "4. View history\n";
-        cout << "5. Return to main menu\n";
-        cout << "Select an option: ";
-        cin >> option;
-        cin.ignore();
-        
-        // Update global player
-        player = p;
-        
-        switch (option) {
-            case 1:
-                // Complete race flow again
-                cout << "\n=== NEW RACE - STEP 1: CHOOSE YOUR TRACK ===\n";
-                tracksF1();
-                
-                cout << "\n=== NEW RACE - STEP 2: MEET THE DRIVERS ===\n";
-                startF1Simulator();
-                
-                cout << "\n=== NEW RACE - STEP 3: PLACE YOUR BET ===\n";
-                cout << "Your available balance: $" << player.wallet << endl;
-                startBettingSystem();
-                
-                // Recursive call for another post-race menu
-                p = player;
-                postRaceMenu(p);
-                return;
-                
-            case 2:
-                cout << "\n=== CHOOSE NEW TRACK ===\n";
-                tracksF1();
-                break;
-                
-            case 3:
-                cout << "\n=== VIEW CARS ===\n";
-                startF1Simulator();
-                break;
-                
-            case 4:
-                cout << "\n=== YOUR HISTORY ===\n";
-                showHistory();
-                break;
-                
-            case 5:
-                cout << "\nReturning to main menu...\n";
-                break;
-                
-            default:
-                cout << "Invalid option. Please try again.\n";
-        }
-        
-        // Update local player with changes
-        p = player;
-        
-    } while (option != 5);
 }
