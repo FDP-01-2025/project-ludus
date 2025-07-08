@@ -138,8 +138,13 @@ int askNumber(int minimum, int maximum);
 * El código utiliza códigos de color ANSI y emojis UTF-8 para mejorar la experiencia visual en consola
 
 ## Imágenes o mockups del juego
+# 🏎️ Random Racing Luck
 
-  🎨
+¡Bienvenido a **Random Racing Luck**, 
+---
+
+## 🎮 Mockup del juego
+
 ].----------------. .----------------.
 | .--------------. | | .--------------. |
 | | _________ | | | | __ | |
@@ -151,17 +156,6 @@ int askNumber(int minimum, int maximum);
 | | | | | | | |
 | '--------------' | | '--------------' |
 '----------------' '----------------'
-
-  🚗💨 WELCOME TO THE 🚦 Random Racing Luck GAME
-
-       WELCOME TO THE GAME
-
-       ¿QUÉ AUTO QUIERES?
-        1. Auto Deportivo
-        2. Auto Clásico
-   
-    ¿Cuál te gusta más?
-
 1. Clona este repositorio en tu máquina local:
    ```bash
    git clone [https://github.com/FDP-01-2025/project-ludus.git]
