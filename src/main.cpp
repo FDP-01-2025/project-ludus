@@ -20,10 +20,10 @@ int main() {
 
         switch (option) {
             case 1:
-                validateNames(player);
+                validateNames(player); // validates name and age
                 player.wallet = 1000;
                 player.chosenRace = {"", "", "", 0};
-                principalMenu(player);
+                principalMenu(player); // main menu for single player
                 break;
 
             case 2:
@@ -42,6 +42,7 @@ int main() {
 void principalMenu(players& p){
     int opcion;
     
+    // Welcome message
     cout << "\n*************************" << endl;
     cout << "  BIENVENIDO " << p.userName << " " << endl;
     cout << "*************************" << endl;
@@ -57,6 +58,7 @@ void principalMenu(players& p){
         cin >> opcion;
         cin.ignore();
 
+        // Update global player before calling functions
         player = p;
 
         switch (opcion) {
@@ -92,6 +94,7 @@ void principalMenu(players& p){
                 cout << "Opcion invalida. Por favor, intenta de nuevo.\n";
         }
         
+        // Update local player with any changes from global
         p = player;
     } while (opcion != 4);
 }

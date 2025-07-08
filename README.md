@@ -24,7 +24,105 @@ El objetivo principal es poner en práctica los temas aprendidos en clase (If, E
    **Carnet:** 00034425
 
 
+
 ## Instrucciones de Ejecución
+1. Compilar el programa
+
+Asegúrate de tener un compilador de C++  Desde consola, ejecuta:
+g++ main.cpp -o (nombre que queresmos colocar)
+
+2. Ejecutar el programa
+
+En la consola, ejecuta el archivo compilado
+* En el menú principal, elige la opción para realizar apuestas, ver ranking o salir
+* Tras cada carrera, puedes ver resultados, podio, y continuar apostando o salir.
+
+
+## 🏁Temática y ambientación🏁 :
+
+El juego está inspirado en el mundo de la Fórmula 1, uno de los deportes de motor más populares y competitivos a nivel mundial.
+La ambientación busca recrear la sensación de estar en un gran premio de Fórmula 1, con pilotos destacados, estadísticas y resultados sorprendentes en cada carrera. Aunque se juega desde la consola, la interfaz está diseñada para transmitir dinamismo y emoción, manteniendo al jugador atento a cada momento de la carrera.
+
+
+## Mecánica principal
+La mecánica principal del juego se centra en el sistema de apuestas virtuales sobre carreras de Fórmula 1. Los jugadores comienzan con un saldo inicial de dinero ficticio y pueden apostar la cantidad que deseen en cada carrera.
+
+## Idea general de la jugabilidad
+La interacción se basa principalmente en menús y opciones, lo que permite navegar de forma sencilla. 
+En cada carrera, el jugador podrá:
+=Visualiza y selecciona tu equipo y piloto
+=Ver la lista de pilotos disponibles.
+-Escoge entre cinco circuitos mundialmente famosos, cada uno con su nivel de dificultad y longitud diferente
+-Admira el diseño detallado de cada vehículo en ASCII art, con colores únicos que representan a cada piloto.
+-Selecciona uno de los equipos oficiales (Red Bull, Ferrari, Mercedes, McLaren, Aston Martin)
+
+## Aplicación de los temas vistos (uno por uno con ejemplos)
+ * Aleatoriedad:
+Uso de rand() para generar tiempos y eventos variables en la carrera, simulando incertidumbre y realismo.
+Ejemplo:
+cpp
+Copiar
+Editar
+int tiempoBase = 85000 + (rand() % 5000);
+
+* Manejo de archivos:
+Para cargar piloto personalizado desde archivo externo.
+Ejemplo:
+
+cpp
+Copiar
+Editar
+ifstream archivo("piloto_extra.txt");
+
+* Vectores (std::vector):
+Manejo dinámico de listas como pilotos, resultados y historial de apuestas.
+Ejemplo:
+
+cpp
+Copiar
+Editar
+vector <string> pilots = {"Max Verstappen", "Lewis Hamilton", ...};
+
+* Manejo de cadenas y formato:
+Para mostrar nombres, equipos, y resultados con colores y emojis en consola.
+Ejemplo:
+
+cpp
+Copiar
+Editar
+cout << GREEN << "🏆 ¡" << pilots[chosenPilot] << " ganó la carrera!" << RESET << endl;
+
+* Entrada y validación:
+Uso de ciclos y condiciones para garantizar que el usuario ingrese datos válidos, evitando errores en ejecución.
+Ejemplo:
+
+cpp
+Copiar
+Editar
+int askNumber(int minimum, int maximum);
+
+## Consideraciones técnicas del desarrollo
+* El proyecto está desarrollado en C++ 
+* Para la simulación de tiempos y eventos, se usa la función rand() con semillas variadas para      mayor aleatoriedad.
+* El código utiliza códigos de color ANSI y emojis UTF-8 para mejorar la experiencia visual en consola
+
+## Imágenes o mockups del juego
+
+].----------------.   .----------------. 
+| .--------------. | | .--------------. |
+| |  _________   | | | |     __       | |
+| | |_   ___  |  | | | |    /  |      | |
+| |   | |_  \_|  | | | |    `| |      | |
+| |   |  _|      | | | |     | |      | |
+| |  _| |_       | | | |    _| |_     | |
+| | |_____|      | | | |   |_____|    | |
+| |              | | | |              | |
+| '--------------' | | '--------------' |
+ '----------------'   '----------------'
+ 🚗💨 WELCOME TO THE 🚦 Random Racing Luck GAME
+    **********************
+    <<WELCOME TO THE GAME" 
+    ***********************
 
 1. Clona este repositorio en tu máquina local:
    ```bash

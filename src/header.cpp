@@ -135,11 +135,11 @@ void tracksF1() {
 
     string namesTrack_Archive[5] = {
         //files
-        "src/sliverstone.txt",
-        "src/monza.txt",
-        "src/suzuka.txt",
-        "src/interlagos.txt",
-        "src/monaco.txt",
+        "sliverstone.txt",
+        "monza.txt",
+        "suzuka.txt",
+        "interlagos.txt",
+        "monaco.txt",
     };
 
     cout << "\n=== VISTA DE LA PISTA ===\n";
@@ -496,7 +496,8 @@ void startF1Simulator() {
     cout << "1. Ver pilotos y elegir uno\n";
     cout << "2. Crear tu propio piloto con auto personalizado\n";
     cout << "Que quieres hacer?: ";
-    whatToDo = askNumber(1, 2);
+    cin >> whatToDo;
+    cin.ignore();
 
     // If they want to add a new pilot
     if (whatToDo == 2) {
@@ -514,7 +515,8 @@ void startF1Simulator() {
     // Show the teams to choose from
     showTeams(teams);
     cout << "\nQue equipo te gusta? (1-" << howManyTeams << "): ";
-    chosenTeam = askNumber(1, howManyTeams);
+    cin >> chosenTeam;
+    cin.ignore();
 
     // Show the pilots of the chosen team
     showPilots(teams[chosenTeam - 1]);
@@ -522,7 +524,8 @@ void startF1Simulator() {
     cout << "\nQue piloto eliges? (1-" << pilotsPerTeam;
     if (hasExtraPilot) cout << " o 3 para piloto extra";
     cout << "): ";
-    chosenPilot = askNumber(1, hasExtraPilot ? 3 : 2);
+    cin >> chosenPilot;
+    cin.ignore();
 
     Pilot myPilot;
 
@@ -1214,8 +1217,8 @@ void startBettingSystem() {
         cout << "3. Ver ranking de apostadores\n";
         cout << "4. Regresar al menu principal\n";
         cout << "\nElige una opcion (1-4): ";
-        
-        option = askNumber(1, 4);
+        cin >> option;
+        cin.ignore();
         
         switch (option) {
             case 1:
