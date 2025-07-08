@@ -34,8 +34,6 @@ g++ main.cpp -o (nombre que queresmos colocar)
 2. Ejecutar el programa
 
 En la consola, ejecuta el archivo compilado
-
-
 * En el menú principal, elige la opción para realizar apuestas, ver ranking o salir
 * Tras cada carrera, puedes ver resultados, podio, y continuar apostando o salir.
 
@@ -110,6 +108,21 @@ int askNumber(int minimum, int maximum);
 
 ## Imágenes o mockups del juego
 
+].----------------.   .----------------. 
+| .--------------. | | .--------------. |
+| |  _________   | | | |     __       | |
+| | |_   ___  |  | | | |    /  |      | |
+| |   | |_  \_|  | | | |    `| |      | |
+| |   |  _|      | | | |     | |      | |
+| |  _| |_       | | | |    _| |_     | |
+| | |_____|      | | | |   |_____|    | |
+| |              | | | |              | |
+| '--------------' | | '--------------' |
+ '----------------'   '----------------'
+ 🚗💨 WELCOME TO THE 🚦 Random Racing Luck GAME
+    **********************
+    <<WELCOME TO THE GAME" 
+    ***********************
 
 1. Clona este repositorio en tu máquina local:
    ```bash
