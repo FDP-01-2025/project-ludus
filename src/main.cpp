@@ -1,7 +1,7 @@
 #include "header.h"
 using namespace std;
 
-players player1; //struct que se usa en todas las librerias
+players player1; 
 
 // Define the global player variable that header.cpp expects
 players player;
@@ -14,47 +14,23 @@ int main() {
     int option;
     do {
         cout << "\n----- MENÚ PRINCIPAL -----\n";
-        cout << "  1. Un jugador\n";
+        cout << "  1. Jugar\n";
         cout << "  2. Salir\n";
         cout << "Selecciona una opción: ";
         cin >> option;
-        if (!(cin >> option)) { //validacion para admitir solo numeros
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "Invalid input. Please enter a number.\n";
-            continue;
-        }
         cin.ignore();
 
         switch (option) {
             case 1:
                 validateNames(player1); // validates name and age
-                player1.wallet = 1000000.00;
+                player1.wallet = 1000;
                 player1.chosenRace = {"", "", "", 0};
                 player = player1; // Set global player for functions to use
                 principalMenu(player1); // main menu for single player
                 break;
 
             case 2:
-                cout << "\n=== PLAYER 1 ===\n";
-                validateNames(player1);
-                player1.wallet = 1000000.00;
-                player1.chosenRace = {"", "", "", 0};
-
-                cout << "\n=== PLAYER 2 ===\n";
-                validateNames(player2);
-                if (player2.userName == player1.userName) {
-                    cout << "Los jugadores no pueden tener el mismo nombre. Elija otro por favor.\n"; // Volver a pedir nombre...
-                    }
-                player2.wallet = 1000000.00;
-                player2.chosenRace = {"", "", "", 0};
-
-                // Multiplayer function
-                multiplayer(player1, player2);
-                break;
-
-            case 3:
-                cout << "\nThanks for playing 🏁 See you next time, pilot!\n";
+                cout << "\n¡Gracias por jugar!  ¡Nos vemos la próxima vez, piloto!\n";
                 break;
 
             default:
@@ -71,7 +47,7 @@ void principalMenu(players& p){
     
     // Welcome message
     cout << "\n*************************" << endl;
-    cout << " 🏁🏁🏁 BIENVENIDO " << p.userName << " 🏁🏁🏁" << endl;
+    cout << "  BIENVENIDO " << p.userName << " " << endl;
     cout << "*************************" << endl;
     cout << "Tu saldo actual: $" << p.wallet << endl;
 
@@ -83,12 +59,6 @@ void principalMenu(players& p){
         cout << "4. Salir al menú principal\n";
         cout << "Selecciona una opción: ";
         cin >> opcion;
-        if (!(cin >> opcion)) { //validacion para admitir solo numeros
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "Invalid input. Please enter a number.\n";
-            continue;
-        }
         cin.ignore();
 
         // Update global player before calling functions
