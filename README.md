@@ -24,7 +24,35 @@ El objetivo principal es poner en práctica los temas aprendidos en clase (If, E
    **Carnet:** 00034425
 
 
+
 ## Instrucciones de Ejecución
+
+## 🏁Temática y ambientación🏁 :
+
+El juego está inspirado en el mundo de la Fórmula 1, uno de los deportes de motor más populares y competitivos a nivel mundial.
+La ambientación busca recrear la sensación de estar en un gran premio de Fórmula 1, con pilotos destacados, estadísticas y resultados sorprendentes en cada carrera. Aunque se juega desde la consola, la interfaz está diseñada para transmitir dinamismo y emoción, manteniendo al jugador atento a cada momento de la carrera.
+
+la ambientacion se trata en ambientacion de apuestas 
+
+
+## Mecánica principal
+La mecánica principal del juego se centra en el sistema de apuestas virtuales sobre carreras de Fórmula 1. Los jugadores comienzan con un saldo inicial de dinero ficticio y pueden apostar la cantidad que deseen en cada carrera.
+
+## Idea general de la jugabilidad
+La interacción se basa principalmente en menús y opciones, lo que permite navegar de forma sencilla. 
+En cada carrera, el jugador podrá:
+
+Ver la lista de pilotos disponibles.
+Escoge entre cinco circuitos mundialmente famosos, cada uno con su nivel de dificultad y longitud diferente
+Admira el diseño detallado de cada vehículo en ASCII art, con colores únicos que representan a cada piloto.
+
+## Aplicación de los temas vistos (uno por uno con ejemplos)
+
+## Consideraciones técnicas del desarrollo
+
+
+## Imágenes o mockups del juego
+
 
 1. Clona este repositorio en tu máquina local:
    ```bash
