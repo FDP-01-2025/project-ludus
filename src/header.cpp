@@ -518,7 +518,6 @@ void startF1Simulator() {
         cout << "\n-- CUSTOM PILOT CREATOR --\n";
         viewCars();
         createPilot();
-        return;
     }
 
     int chosenTeam, chosenPilot;
@@ -986,6 +985,11 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     cout << "\nHow much money do you want to bet?: $";
     int betAmount;
     cin >> betAmount;
+    while (!(cin >> betAmount) || betAmount <= 0) {
+    cout << RED << "Cantidad invalida. Ingrese valor positivo: " << RESET;
+    cin.clear();
+    cin.ignore(10000, '\n');
+}
     
     // Validate bet amount
     if (betAmount > player.wallet) {
@@ -1062,7 +1066,7 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     
     // Save in history
     Bet newBet;
-    newBet.playerName = "Player";
+    newBet.playerName = player.userName;
     newBet.betType = typeName;
     newBet.chosenPilot = pilots[chosenPilot];
     newBet.betAmount = betAmount;
@@ -1070,6 +1074,7 @@ void placeBet(const vector<string>& pilots, const vector<int>& ids, const vector
     newBet.prize = wonBet ? totalPrize : 0;
     
     bettingHistory.push_back(newBet);
+    updateBettorRanking(player.userName, wonBet, wonBet ? totalPrize : -betAmount);
     updateBettorRanking("Player", wonBet, wonBet ? totalPrize : -betAmount);
     
     cout << "\n" << MAGENTA << "Press ENTER to continue..." << RESET;
