@@ -43,9 +43,9 @@ La interacción se basa principalmente en menús y opciones, lo que permite nave
 En cada carrera, el jugador podrá:
 
 Ver la lista de pilotos disponibles.
-Escoge entre cinco circuitos mundialmente famosos, cada uno con su nivel de dificultad y longitud diferente
-Admira el diseño detallado de cada vehículo en ASCII art, con colores únicos que representan a cada piloto.
-
+-Escoge entre cinco circuitos mundialmente famosos, cada uno con su nivel de dificultad y longitud diferente
+-Admira el diseño detallado de cada vehículo en ASCII art, con colores únicos que representan a cada piloto.
+-Selecciona uno de los equipos oficiales (Red Bull, Ferrari, Mercedes, McLaren, Aston Martin)
 ## Aplicación de los temas vistos (uno por uno con ejemplos)
 
 ## Consideraciones técnicas del desarrollo
