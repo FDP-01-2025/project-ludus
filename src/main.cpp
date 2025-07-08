@@ -8,7 +8,6 @@ players player;
 
 void principalMenu(players& p);
 void multiplayer(players& p1, players& p2);
-void postRaceMenu(players& p);
 
 int main() {
     showTitle(); // Translated function name
@@ -83,8 +82,7 @@ void principalMenu(players& p){
         cout << "1. Choose track and start race\n";
         cout << "2. Show cars\n";
         cout << "3. Betting system\n";
-        cout << "4. History\n";
-        cout << "5. Exit to main menu\n";
+        cout << "4. Exit to main menu\n";
         cout << "Select an option: ";
         cin >> opcion;
         if (!(cin >> option)) { //validacion para admitir solo numeros
@@ -122,9 +120,6 @@ void principalMenu(players& p){
                 startBettingSystem(); // manage bets only
                 break;
             case 4:
-                showHistory(); // show previous actions
-                break;
-            case 5:
                 cout << "\nReturning to main menu. See you later " << p.userName << "!\n";
                 break;
             default:
@@ -133,7 +128,7 @@ void principalMenu(players& p){
         
         // Update local player with any changes from global
         p = player;
-    } while (opcion != 5);
+    } while (opcion != 4);
 }
 
 void multiplayer(players& p1, players& p2) {
@@ -164,13 +159,6 @@ void multiplayer(players& p1, players& p2) {
     
     player = p2; // Simulate for player 2
     startF1Simulator();
-
-    cout << "\nHistory of " << p1.userName << " and " << p2.userName << "...\n"; 
-    player = p1; // Show history for player 1
-    showHistory();
-    
-    player = p2; // Show history for player 2
-    showHistory();
 
     // then you can compare times and declare a winner
 }
