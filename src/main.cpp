@@ -85,7 +85,7 @@ void principalMenu(players& p){
         cout << "4. Exit to main menu\n";
         cout << "Select an option: ";
         cin >> opcion;
-        if (!(cin >> option)) { //validacion para admitir solo numeros
+        if (!(cin >> opcion)) { //validacion para admitir solo numeros
             cin.clear();
             cin.ignore(10000, '\n');
             cout << "Invalid input. Please enter a number.\n";
