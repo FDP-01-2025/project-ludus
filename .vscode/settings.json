@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "iostream": "cpp"
+<<<<<<< HEAD
     },
     "code-runner.executorMap": {
         "cpp": "cd $dir && g++ -o main.exe src/main.cpp src/header.cpp && main.exe"
@@ -8,4 +9,7 @@
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,
     "code-runner.clearPreviousOutput": true
+=======
+    }
+>>>>>>> 567cf21369c9d9e49694408af061db432470df12
 }

@@ -45,9 +45,38 @@ La ambientación busca recrear la sensación de estar en un gran premio de Fórm
 
 
 ## Mecánica principal
+
 La mecánica principal del juego se centra en el sistema de apuestas virtuales sobre carreras de Fórmula 1. Los jugadores comienzan con un saldo inicial de dinero ficticio y pueden apostar la cantidad que deseen en cada carrera.
 
+--Funciones 
+1) loserResult
+Propósito: Actualizar saldo tras perder una apuesta.
+Qué hace:
+Resta la pérdida del saldo.
+Asegura que saldo no sea negativo (mínimo 0)
+
+2) startBettingSystem
+Propósito: Controlar el menú principal del sistema de apuestas.
+Qué hace:
+Muestra el menú para apostar, ver historial, ver ranking o salir.
+Llama a las funciones correspondientes según la opción elegida.
+
+3) postRaceMenu
+Propósito: Menú que aparece después de una carrera.
+Permite repetir o terminar.
+
+4) system("cls")
+ Esto ayuda a crear la sensación de "pantalla nueva" cuando muestras una nueva etapa del juego, como pasar de menú a carrera
+Que hace:
+limpia la consola
+
+5) cin.ignore() y cin.get()
+¿Qué hacen?
+cin.ignore() limpia el buffer de entrada. Muy útil cuando mezclas cin >> variable y getline()
+cin.get()  espera a que el usuario presione Enter.
+
 ## Idea general de la jugabilidad
+
 La interacción se basa principalmente en menús y opciones, lo que permite navegar de forma sencilla. 
 En cada carrera, el jugador podrá:
 =Visualiza y selecciona tu equipo y piloto
@@ -57,6 +86,7 @@ En cada carrera, el jugador podrá:
 -Selecciona uno de los equipos oficiales (Red Bull, Ferrari, Mercedes, McLaren, Aston Martin)
 
 ## Aplicación de los temas vistos (uno por uno con ejemplos)
+
  * Aleatoriedad:
 Uso de rand() para generar tiempos y eventos variables en la carrera, simulando incertidumbre y realismo.
 Ejemplo:
@@ -102,27 +132,25 @@ Editar
 int askNumber(int minimum, int maximum);
 
 ## Consideraciones técnicas del desarrollo
+
 * El proyecto está desarrollado en C++ 
-* Para la simulación de tiempos y eventos, se usa la función rand() con semillas variadas para      mayor aleatoriedad.
+* Para la simulación de tiempos y eventos, se usa la función rand() con semillas variadas para mayora eatoriedad.
 * El código utiliza códigos de color ANSI y emojis UTF-8 para mejorar la experiencia visual en consola
 
 ## Imágenes o mockups del juego
+# 🏎️ Random Racing Luck
 
-].----------------.   .----------------. 
-| .--------------. | | .--------------. |
-| |  _________   | | | |     __       | |
-| | |_   ___  |  | | | |    /  |      | |
-| |   | |_  \_|  | | | |    `| |      | |
-| |   |  _|      | | | |     | |      | |
-| |  _| |_       | | | |    _| |_     | |
-| | |_____|      | | | |   |_____|    | |
-| |              | | | |              | |
-| '--------------' | | '--------------' |
- '----------------'   '----------------'
- 🚗💨 WELCOME TO THE 🚦 Random Racing Luck GAME
-    **********************
-    <<WELCOME TO THE GAME" 
-    ***********************
+¡Bienvenido a **Random Racing Luck**, 
+---
+
+## 🎮 Mockup del juego
+
+    💨 WELCOME TO THE GAME: RANDOM RACING LUCK 🚦
+
+          🏁 WELCOME PLAYER! 🏁
+          
+           Player name (only letters allowed):
+
 
 1. Clona este repositorio en tu máquina local:
    ```bash
