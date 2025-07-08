@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Compilar y Ejecutar Proyecto F1",
+			"type": "shell",
+			"command": "g++",
+			"args": [
+				"-o",
+				"main.exe",
+				"src/main.cpp",
+				"src/header.cpp"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			]
+		}
+	]
+}
