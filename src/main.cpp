@@ -176,7 +176,6 @@ void postRaceMenu(players& p) {
         cout << "4. View history\n";
         cout << "5. Return to main menu\n";
         cout << "Select an option: ";
-        cin >> option;
         if (!(cin >> option)) { //validacion para admitir solo numeros
             cin.clear();
             cin.ignore(10000, '\n');
@@ -203,7 +202,6 @@ void postRaceMenu(players& p) {
                 
                 // Recursive call for another post-race menu
                 p = player;
-                postRaceMenu(p);
                 return;
                 
             case 2:
@@ -223,7 +221,7 @@ void postRaceMenu(players& p) {
                 
             case 5:
                 cout << "\n Returning to main menu...\n";
-                return;
+                break;
                 
             default:
                 cout << "Invalid option. Please try again.\n";
